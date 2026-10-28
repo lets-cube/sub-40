@@ -33,32 +33,35 @@ Pour un problème de compréhension, indiquer le passage qui pose difficulté et
    bun run build
    ```
 
-`check` rassemble Oxlint, la vérification Oxfmt, TypeScript et Vitest. Les erreurs et les avertissements de lint font échouer la commande. `bun run lint:fix` applique les corrections automatiques sûres ; vérifier le diff après son exécution.
+`check` rassemble Oxlint, la vérification Oxfmt, la validation des contenus, TypeScript (application et noyau sans DOM) et Vitest. Les erreurs et les avertissements de lint font échouer la commande. `bun run lint:fix` applique les corrections automatiques sûres ; vérifier le diff après son exécution.
 
 ## Où intervenir
 
-| Changement                                     | Fichiers ou dossier          |
-| ---------------------------------------------- | ---------------------------- |
-| Introduction                                   | `src/data/introduction.json` |
-| Étapes et objectifs                            | `src/data/lessons.json`      |
-| Algorithmes, masques et reconnaissance des cas | `src/data/cases.json`        |
-| Motifs et couleurs associées                   | `src/data/patterns.json`     |
-| Composition de l’application et navigation     | `src/app/`                   |
-| Méthode, notation, vue libre et motifs         | `src/features/`              |
-| Composants et hooks réutilisés                 | `src/shared/`                |
-| Contrat de l’état partagé de l’interface       | `src/shared/state/`          |
-| Rotations, SVG, notation et historique         | `src/cube/`                  |
-| Typographie, couleurs et mise en page          | `src/styles/`                |
-| Tests et positions de référence                | `tests/`                     |
-| Captures et animation du README                | `docs/assets/`               |
+| Changement                                     | Fichiers ou dossier                                      |
+| ---------------------------------------------- | -------------------------------------------------------- |
+| Introduction                                   | `src/content/methods/3x3/intermediate/introduction.json` |
+| Étapes et objectifs                            | `src/content/methods/3x3/intermediate/lessons.json`      |
+| Algorithmes, masques et reconnaissance des cas | `src/content/methods/3x3/intermediate/cases.json`        |
+| Motifs et couleurs associées                   | `src/content/methods/3x3/intermediate/patterns.json`     |
+| Composition de l’application et navigation     | `src/app/`                                               |
+| Méthode, notation, vue libre et motifs         | `src/features/`                                          |
+| Lecture, formules et contrôles réutilisés      | `src/features/play-algorithm/`                           |
+| Primitives UI sans métier                      | `src/shared/`                                            |
+| Contrat de l’état partagé de l’interface       | `src/shared/state/`                                      |
+| Règles et notation du puzzle                   | `src/domain/puzzles/cube-3x3/`                           |
+| SVG, caméras et flèches                        | `src/rendering/`                                         |
+| Assemblage de la page                          | `src/pages/`                                             |
+| Typographie, couleurs et mise en page          | `src/styles/`                                            |
+| Tests et positions de référence                | `tests/`                                                 |
+| Captures et animation du README                | `docs/assets/`                                           |
 
-Le [guide d’architecture](docs/ARCHITECTURE.md) décrit les responsabilités et les règles d’import. Placer les constantes dans leur fonctionnalité ou leur domaine ; réserver `shared/` aux éléments réutilisés.
+Le [guide d’architecture](docs/ARCHITECTURE.md) décrit les responsabilités et les règles d’import. Placer les constantes dans leur fonctionnalité ou leur domaine ; réserver `shared/` aux primitives sans dépendance métier. Le guide décrit aussi comment ajouter une méthode au catalogue et les limites actuelles de la prise en charge des puzzles.
 
 ## Vérifier selon le changement
 
 ### Textes et cas pédagogiques
 
-Conserver une terminologie cohérente entre les explications, le cube et les formules. Pour ajouter ou corriger un algorithme, fournir sa source et une position permettant de vérifier le cas.
+Conserver une terminologie cohérente entre les explications, le cube et les formules. Pour ajouter ou corriger un algorithme, fournir sa source et une position permettant de vérifier le cas. Lancer `bun run validate:content` pour vérifier les références, formules, masques et diagrammes. Les IDs n’ont pas à suivre l’ordre des tableaux.
 
 Les formules et masques Francocube ont une référence enregistrée dans `tests/francocube-reference.json`. Une modification de cette référence doit être expliquée et vérifiée indépendamment du moteur : la régénérer à partir du résultat du code testé masquerait une régression.
 

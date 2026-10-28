@@ -1,17 +1,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
-import type { LessonPlayback } from '../cube/playback';
-import { AppUiContext, type AppUiContextValue, type ModalName } from '../shared/state/ui-context';
+import {
+  AppUiContext,
+  type AppUiContextValue,
+  type ModalName,
+  type Pausable,
+} from '../shared/state/ui-context';
 import { TOAST_DURATION_MS } from './app.constants';
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [arrows, setArrows] = useState(false);
   const [modal, setModal] = useState<ModalName | null>(null);
   const [toast, setToast] = useState('');
-  const players = useRef(new Set<LessonPlayback>());
+  const players = useRef(new Set<Pausable>());
   const timer = useRef<number | null>(null);
 
-  const pauseOthers = useCallback((except?: LessonPlayback) => {
+  const pauseOthers = useCallback((except?: Pausable) => {
     for (const player of players.current) {
       if (player !== except) {
         player.pause();
@@ -19,7 +23,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const register = useCallback((player: LessonPlayback) => {
+  const register = useCallback((player: Pausable) => {
     players.current.add(player);
     return () => {
       players.current.delete(player);

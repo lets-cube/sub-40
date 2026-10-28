@@ -75,14 +75,15 @@ Ouvrir l’adresse affichée par Vite, habituellement [localhost:5173](http://lo
 
 ### Commandes utiles
 
-| Commande           | Usage                                                |
-| ------------------ | ---------------------------------------------------- |
-| `bun run dev`      | Développer avec rechargement automatique             |
-| `bun run check`    | Vérifier lint, format, types et tests                |
-| `bun run lint:fix` | Appliquer les corrections de lint automatiques sûres |
-| `bun run fmt`      | Formater le dépôt avec Oxfmt                         |
-| `bun run build`    | Construire le site dans `dist/`                      |
-| `bun run preview`  | Essayer le site compilé en local                     |
+| Commande                   | Usage                                                |
+| -------------------------- | ---------------------------------------------------- |
+| `bun run dev`              | Développer avec rechargement automatique             |
+| `bun run check`            | Vérifier lint, format, contenus, types et tests      |
+| `bun run lint:fix`         | Appliquer les corrections de lint automatiques sûres |
+| `bun run fmt`              | Formater le dépôt avec Oxfmt                         |
+| `bun run build`            | Construire le site dans `dist/`                      |
+| `bun run validate:content` | Vérifier les méthodes, formules et objectifs         |
+| `bun run preview`          | Essayer le site compilé en local                     |
 
 React et TypeScript gèrent l’interface ; le moteur du cube et son rendu SVG sont séparés des composants. Le projet utilise Vite, Vitest, Oxlint et Oxfmt. Les polices sont incluses dans le dépôt.
 
@@ -94,7 +95,7 @@ Les corrections de textes, les retours d’apprentissage, les améliorations d�
 
 - **Un bug ?** [Ouvrir une issue](https://github.com/lets-cube/sub-40/issues) avec la formule jouée, le résultat attendu et, si possible, une capture.
 - **Une amélioration ?** Proposer une pull request avec une explication du changement et ses vérifications.
-- **Une première contribution ?** Les textes sont dans `src/data/`, les écrans dans `src/features/`, les composants partagés dans `src/shared/`, le moteur dans `src/cube/` et le style dans `src/styles/`.
+- **Une première contribution ?** Les méthodes sont dans `src/content/`, les outils dans `src/features/`, les règles dans `src/domain/`, le dessin dans `src/rendering/` et le style dans `src/styles/`.
 
 Avant de proposer une modification :
 

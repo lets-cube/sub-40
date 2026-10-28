@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2023"],
+    "types": []
+  },
+  "include": [
+    "src/domain/**/*.ts",
+    "src/features/play-algorithm/model/**/*.ts",
+    "src/rendering/svg/**/*.ts"
+  ]
+}

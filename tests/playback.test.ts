@@ -2,10 +2,19 @@ import { createHash } from 'node:crypto';
 
 import { describe, expect, it } from 'vitest';
 
-import { initialState, lessonMoves, solvedCube, turn, type Cube } from '../src/cube/engine';
-import { keyboardCommand, parseSetupAlg } from '../src/cube/notation';
-import { InteractivePlayback, LessonPlayback, type Clock } from '../src/cube/playback';
-import { CASES } from '../src/data/method';
+import { INTERMEDIATE_METHOD } from '../src/content/methods/3x3/intermediate/method';
+import {
+  initialState,
+  lessonMoves,
+  solvedCube,
+  turn,
+  type Cube,
+} from '../src/domain/puzzles/cube-3x3/engine';
+import { parseSetupAlg } from '../src/domain/puzzles/cube-3x3/notation';
+import { keyboardCommand } from '../src/features/play-algorithm/browser/keyboard';
+import type { Clock } from '../src/features/play-algorithm/model/clock';
+import { InteractivePlayback, LessonPlayback } from '../src/features/play-algorithm/model/playback';
+const { cases: CASES } = INTERMEDIATE_METHOD;
 const digest = (cube: Cube) =>
   createHash('sha256')
     .update(

@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 
 import { describe, expect, it } from 'vitest';
 
+import { INTERMEDIATE_METHOD } from '../src/content/methods/3x3/intermediate/method';
 import {
   initialState,
   invertAlg,
@@ -11,9 +12,9 @@ import {
   sourceNotation,
   turn,
   type Cube,
-} from '../src/cube/engine';
-import { CASES, LESSONS } from '../src/data/method';
-import { objectiveTiles } from '../src/features/method/objectives';
+} from '../src/domain/puzzles/cube-3x3/engine';
+const { cases: CASES, lessons: LESSONS } = INTERMEDIATE_METHOD;
+import { objectiveTiles } from '../src/features/learn-method/objectives';
 import reference from './francocube-reference.json';
 export const digest = (cube: Cube) =>
   createHash('sha256')
@@ -75,8 +76,8 @@ describe('Francocube migration reference', () => {
     expect(LESSONS.flatMap((l) => l.caseIds)).toEqual(CASES.map((c) => c.id));
     expect(CASES.slice(0, 10).every((c) => c.previewCamera !== 'back')).toBe(true);
     expect(CASES.slice(10).every((c) => c.previewCamera === 'back')).toBe(true);
-    expect(objectiveTiles(5)).toEqual(['f', 'r', 'f', 'f', 'f', 'f', 'f', 'f', 'f']);
-    expect(objectiveTiles(6)).toEqual(Array(9).fill('f'));
+    expect(objectiveTiles(LESSONS[5])).toEqual(['f', 'r', 'f', 'f', 'f', 'f', 'f', 'f', 'f']);
+    expect(objectiveTiles(LESSONS[6])).toEqual(Array(9).fill('f'));
   });
   it('training setups cancel the solving formula for the last two steps', () => {
     CASES.filter((c) => c.training).forEach((c) => {

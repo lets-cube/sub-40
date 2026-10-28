@@ -1,15 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
+import { INTERMEDIATE_METHOD } from '../src/content/methods/3x3/intermediate/method';
 import {
   FACE_MOVE_BASES,
   MOVE_SUFFIXES,
   ROTATION_MOVE_BASES,
   SLICE_MOVE_BASES,
-} from '../src/cube/constants';
-import { LESSONS } from '../src/data/method';
-import { FREE_VIEW_GROUPS } from '../src/features/free-view/free-view.constants';
-import { lessonHash, lessonIndexFromHash } from '../src/features/method/navigation';
-import { NOTATION_FAMILIES } from '../src/features/notation/notation.constants';
+} from '../src/domain/puzzles/cube-3x3/constants';
+const { lessons: LESSONS } = INTERMEDIATE_METHOD;
+import { FREE_VIEW_GROUPS } from '../src/features/explore-puzzle/free-view.constants';
+import { lessonHash, lessonIndexFromHash } from '../src/features/learn-method/navigation';
+import { NOTATION_FAMILIES } from '../src/features/understand-notation/notation.constants';
 
 const commands = (bases: readonly string[]) =>
   bases.flatMap((base) => MOVE_SUFFIXES.map((suffix) => base + suffix));
@@ -46,7 +47,7 @@ describe('client control configuration', () => {
 describe('lesson navigation', () => {
   it('maps each public lesson link to its section index', () => {
     LESSONS.forEach((lesson, index) =>
-      expect(lessonIndexFromHash(lessonHash(lesson.number))).toBe(index),
+      expect(lessonIndexFromHash(lessonHash(lesson.number), LESSONS)).toBe(index),
     );
   });
   it('ignores other anchors and unknown or malformed lesson numbers', () => {
@@ -61,7 +62,7 @@ describe('lesson navigation', () => {
       '#etape-1/anything',
       '#etape-1 ',
     ]) {
-      expect(lessonIndexFromHash(hash)).toBeNull();
+      expect(lessonIndexFromHash(hash, LESSONS)).toBeNull();
     }
   });
 });

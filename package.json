@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "bun run validate:content && bun run typecheck && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --project tsconfig.domain.json",
     "test": "vitest run",
     "test:watch": "vitest",
     "format": "bun run fmt",
@@ -17,7 +17,8 @@
     "lint:fix": "oxlint --fix --deny-warnings .",
     "fmt": "oxfmt --write .",
     "fmt:check": "oxfmt --check .",
-    "check": "bun run lint && bun run fmt:check && bun run typecheck && bun run test"
+    "check": "bun run lint && bun run fmt:check && bun run validate:content && bun run typecheck && bun run test",
+    "validate:content": "bun scripts/validate-content.ts"
   },
   "dependencies": {
     "react": "19.3.1",

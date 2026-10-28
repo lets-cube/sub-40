@@ -1,14 +1,20 @@
 import { useEffect, useRef } from 'react';
 
-import { LESSONS } from '../../data/method';
-import { lessonHash } from '../../features/method/navigation';
-import { ArrowToggle } from '../../shared/components/ArrowToggle';
+import type { Lesson } from '../../domain/learning/types';
+import { lessonHash } from '../../features/learn-method/navigation';
+import { ArrowToggle } from '../../features/play-algorithm/ui/ArrowToggle';
 import { Icon } from '../../shared/components/Icon';
 import { useAppUi, type ModalName } from '../../shared/state/ui-context';
 import { APP_NAME } from '../app.constants';
 import { NAVIGATION_TOOLS } from '../navigation.constants';
 
-export function SiteHeader({ expand }: { expand: (index: number) => void }) {
+export function SiteHeader({
+  lessons,
+  expand,
+}: {
+  lessons: readonly Lesson[];
+  expand: (index: number) => void;
+}) {
   const env = useAppUi();
   const menu = useRef<HTMLDetailsElement>(null);
   useEffect(() => {
@@ -71,7 +77,7 @@ export function SiteHeader({ expand }: { expand: (index: number) => void }) {
               </div>
               <p className="label">Étapes</p>
               <nav aria-label="Étapes de la méthode">
-                {LESSONS.map((lesson, i) => (
+                {lessons.map((lesson, i) => (
                   <a
                     className="step-link"
                     key={lesson.number}

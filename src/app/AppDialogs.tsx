@@ -1,15 +1,15 @@
 import { useCallback, useEffect } from 'react';
 
-import { PATTERNS } from '../data/method';
-import { FreeExplorer } from '../features/free-view/FreeExplorer';
-import { NotationExplorer } from '../features/notation/NotationExplorer';
-import { PatternCard } from '../features/patterns/PatternCard';
+import type { ColoredPattern } from '../content/types';
+import { FreeExplorer } from '../features/explore-puzzle/FreeExplorer';
+import { PatternCard } from '../features/learn-patterns/PatternCard';
+import { NotationExplorer } from '../features/understand-notation/NotationExplorer';
 import { Dialog } from '../shared/components/Dialog';
 import { MODAL_IDS } from '../shared/constants/ui';
 import { useAppUi } from '../shared/state/ui-context';
 import { DIALOG_TITLES } from './navigation.constants';
 
-export function AppDialogs() {
+export function AppDialogs({ patterns }: { patterns: readonly ColoredPattern[] }) {
   const env = useAppUi();
   const { open } = env;
   const close = useCallback(() => open(null), [open]);
@@ -45,8 +45,8 @@ export function AppDialogs() {
       >
         <p className="notation-intro">Des motifs communs à beaucoup d’algorithmes.</p>
         <div className="patterns-grid">
-          {PATTERNS.map((p) => (
-            <PatternCard key={p.id} pattern={p} />
+          {patterns.map((p) => (
+            <PatternCard key={p.id} pattern={p} patterns={patterns} />
           ))}
         </div>
       </Dialog>
@@ -56,7 +56,7 @@ export function AppDialogs() {
         active={env.modal === MODAL_IDS.freeView}
         onClose={close}
       >
-        <FreeExplorer active={env.modal === MODAL_IDS.freeView} />
+        <FreeExplorer patterns={patterns} active={env.modal === MODAL_IDS.freeView} />
       </Dialog>
     </>
   );

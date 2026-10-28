@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 
 import { it, expect } from 'vitest';
 
-import { solvedCube, moveSpec, rotation } from '../src/cube/engine';
-import { svgCube, arrowCue } from '../src/cube/render';
+import { solvedCube, moveSpec, rotation } from '../src/domain/puzzles/cube-3x3/engine';
+import { svgCube, arrowCue } from '../src/rendering/svg/cube-3x3/render';
 const api = { svgCube, arrowCue, solvedCube, moveSpec, rotation };
 const cube = solvedCube();
 it('preserves the approved printed arrows for 54 movements and 216 face projections', () => {

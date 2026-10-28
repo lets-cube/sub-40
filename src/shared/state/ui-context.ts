@@ -1,16 +1,19 @@
 import { createContext, useContext } from 'react';
 
-import type { LessonPlayback } from '../../cube/playback';
 import type { MODAL_IDS } from '../constants/ui';
 
 export type ModalName = (typeof MODAL_IDS)[keyof typeof MODAL_IDS];
+export interface Pausable {
+  pause: () => void;
+}
+
 export interface AppUiContextValue {
   arrows: boolean;
   toggleArrows: () => void;
   modal: ModalName | null;
   open: (modal: ModalName | null) => void;
-  register: (player: LessonPlayback) => () => void;
-  pauseOthers: (except?: LessonPlayback) => void;
+  register: (player: Pausable) => () => void;
+  pauseOthers: (except?: Pausable) => void;
   copy: (text: string) => Promise<void>;
 }
 

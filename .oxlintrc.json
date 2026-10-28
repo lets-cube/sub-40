@@ -33,7 +33,7 @@
   "ignorePatterns": ["node_modules/**", "dist/**", "coverage/**"],
   "overrides": [
     {
-      "files": ["src/cube/**/*.ts"],
+      "files": ["src/domain/**/*.ts"],
       "rules": {
         "eslint/no-restricted-imports": [
           "error",
@@ -44,11 +44,14 @@
                   "react",
                   "react/*",
                   "**/app/**",
+                  "**/pages/**",
                   "**/features/**",
                   "**/shared/**",
-                  "**/data/**"
+                  "**/content/**",
+                  "**/rendering/**",
+                  "**/*.json"
                 ],
-                "message": "Le moteur du cube reste indépendant de React, de l’interface et du contenu pédagogique."
+                "message": "Le domaine reste indépendant de React, du navigateur, des contenus et du rendu."
               }
             ]
           }
@@ -63,8 +66,55 @@
           {
             "patterns": [
               {
-                "group": ["**/app/**", "**/features/**"],
-                "message": "Le socle partagé ne dépend pas des écrans ou de la composition de l’application."
+                "group": [
+                  "**/app/**",
+                  "**/pages/**",
+                  "**/features/**",
+                  "**/domain/**",
+                  "**/content/**",
+                  "**/rendering/**"
+                ],
+                "message": "Le socle UI générique ne dépend pas du métier ou des écrans."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/content/**/*.ts"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "react",
+                  "react/*",
+                  "**/app/**",
+                  "**/pages/**",
+                  "**/features/**",
+                  "**/rendering/**",
+                  "**/shared/**"
+                ],
+                "message": "Les contenus utilisent les modèles du domaine, jamais l’interface."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/rendering/**/*.{ts,tsx}"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["**/app/**", "**/pages/**", "**/features/**", "**/content/**"],
+                "message": "Le rendu dessine un état sans connaître les méthodes ou les outils."
               }
             ]
           }
@@ -79,8 +129,152 @@
           {
             "patterns": [
               {
-                "group": ["**/app/**"],
-                "message": "Les fonctionnalités ne dépendent pas de la couche qui les assemble."
+                "group": [
+                  "**/app/**",
+                  "**/pages/**",
+                  "**/content/catalog",
+                  "**/content/methods/**"
+                ],
+                "message": "Les outils reçoivent leur contenu ; la sélection de méthode appartient à l’application."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/features/play-algorithm/model/**/*.ts"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "react",
+                  "react/*",
+                  "**/browser/**",
+                  "**/hooks/**",
+                  "**/ui/**",
+                  "**/rendering/**",
+                  "**/shared/**",
+                  "**/content/**",
+                  "**/app/**",
+                  "**/pages/**"
+                ],
+                "message": "La lecture est pilotée par une horloge injectée et reste testable sans navigateur."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/pages/**/*.{ts,tsx}"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["**/app/**", "**/content/catalog", "**/content/methods/**"],
+                "message": "Les pages assemblent les outils avec une méthode fournie par l’application."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/features/learn-method/**/*.{ts,tsx}"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "**/explore-puzzle/**",
+                  "**/understand-notation/**",
+                  "**/learn-patterns/**",
+                  "**/app/**",
+                  "**/pages/**",
+                  "**/content/catalog",
+                  "**/content/methods/**"
+                ],
+                "message": "Les outils consomment play-algorithm et les couches basses, pas les autres outils ou un contenu global."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/features/explore-puzzle/**/*.{ts,tsx}"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "**/learn-method/**",
+                  "**/understand-notation/**",
+                  "**/learn-patterns/**",
+                  "**/app/**",
+                  "**/pages/**",
+                  "**/content/catalog",
+                  "**/content/methods/**"
+                ],
+                "message": "Les outils consomment play-algorithm et les couches basses, pas les autres outils ou un contenu global."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/features/understand-notation/**/*.{ts,tsx}"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "**/learn-method/**",
+                  "**/explore-puzzle/**",
+                  "**/learn-patterns/**",
+                  "**/app/**",
+                  "**/pages/**",
+                  "**/content/catalog",
+                  "**/content/methods/**"
+                ],
+                "message": "Les outils consomment play-algorithm et les couches basses, pas les autres outils ou un contenu global."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/features/learn-patterns/**/*.{ts,tsx}"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "**/learn-method/**",
+                  "**/explore-puzzle/**",
+                  "**/understand-notation/**",
+                  "**/app/**",
+                  "**/pages/**",
+                  "**/content/catalog",
+                  "**/content/methods/**"
+                ],
+                "message": "Les outils consomment play-algorithm et les couches basses, pas les autres outils ou un contenu global."
               }
             ]
           }
