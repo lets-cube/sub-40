@@ -1,88 +1,118 @@
-# sub 40″
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/logo-dark.svg">
+  <img src="docs/assets/logo.svg" alt="sub 40″" width="320" height="97">
+</picture>
 
-Apprendre la méthode intermédiaire du Rubik’s Cube, avec des algorithmes animés, une aide fléchée et un cube libre pour essayer des combinaisons.
+# Apprendre le Rubik’s Cube, mouvement par mouvement
 
-Cette version reprend le site existant dans une application **React + TypeScript + Vite**, avec **Bun** pour les dépendances et les commandes. Le style suisse, les 26 démonstrations Francocube et les interactions du cube sont conservés.
+**sub 40″** est un guide interactif de la méthode intermédiaire du cube 3 × 3. Sept étapes, 26 démonstrations et un cube à manipuler pour comprendre ce que fait chaque mouvement.
 
-## Démarrer
+[Essayer l’application](https://cube-methode-claire-hp.calmmyna5.chatgpt.site/) · [Démarrer en local](#démarrer-en-local) · [Contribuer](#contribuer) · [Signaler un problème](https://github.com/lets-cube/sub-40/issues)
 
-Prérequis : [Bun](https://bun.sh/) 1.3 ou plus récent et Node.js 22.12 ou plus récent (utilisé par Vite). Le dépôt utilise Bun 1.3.14 et contient son fichier de verrouillage `bun.lock`.
+![Étape 05 : reconnaître les coins jaunes, suivre les flèches et lire les algorithmes pas à pas.](docs/assets/method.png)
+
+## Ce qu’on peut faire
+
+- **Apprendre la méthode** : avancer de la première face jusqu’au placement des dernières arêtes, avec les cas à reconnaître et les objectifs de chaque étape.
+- **Décomposer un algorithme** : lancer la lecture, avancer ou reculer d’un coup, ou cliquer sur une lettre pour retrouver la position juste avant ce mouvement.
+- **Voir les couches qui tournent** : activer les flèches et les contours des pièces concernées, y compris pour les mouvements de deux couches.
+- **Comprendre la notation** : essayer les faces R/L, U/D et F/B, les tranches M/E/S et les rotations x/y/z sur des cubes qui conservent leur position.
+- **Repérer les motifs** : retrouver le sexy move, son inverse et le sledgehammer grâce à leurs couleurs dans les formules.
+- **Tester une combinaison** : jouer au clavier ou avec les boutons de la vue libre, saisir une position de départ, puis revenir à un coup de l’historique pour essayer une autre suite.
+
+### Du mouvement à la formule
+
+Le sexy move : **R U R′ U′**. Les quatre gestes sont animés ci-dessous, avec le même moteur que dans l’application. Six répétitions ramènent le cube à sa position de départ.
+
+<picture>
+  <source media="(prefers-reduced-motion: reduce)" srcset="docs/assets/cube-still.png">
+  <img src="docs/assets/cube-moves.gif" alt="Animation du sexy move : R, U, R inverse, U inverse. La formule est répétée six fois et le cube revient résolu." width="640" height="440">
+</picture>
+
+### Un cube pour expérimenter
+
+La vue libre garde tous les mouvements saisis, même quand on enchaîne rapidement. Cliquer dans l’historique retrouve la position après ce coup ; le mouvement suivant démarre une nouvelle suite depuis cette position.
+
+![Vue libre : touches autour du cube, historique cliquable et champ Position de départ.](docs/assets/free-view.png)
+
+<details>
+<summary>Voir aussi le tutoriel de notation</summary>
+
+Chaque paire de faces partage un cube. Les boutons donnent directement accès au quart de tour, à l’inverse et au demi-tour.
+
+![Tutoriel de notation : trois cubes pour R/L, U/D et F/B, avec leurs six commandes.](docs/assets/notation.png)
+
+</details>
+
+## Prendre le cube en main
+
+Les exemples commencent par le blanc, avec **le jaune en haut et le bleu devant**. Sur le dessin, F (_Front_) est la face visible à gauche : c’est celle à tenir devant soi. La petite vue complète les faces visibles ; à partir de l’étape 04, elle montre U–B–L.
+
+L’aide fléchée s’active depuis le menu. Dans la notation et la vue libre, les raccourcis sont :
+
+| Touches                                                   | Action                       |
+| --------------------------------------------------------- | ---------------------------- |
+| R, L, U, D, F, B                                          | Tourner une face             |
+| M, E, S                                                   | Tourner une tranche centrale |
+| X, Y, Z                                                   | Tourner le cube entier       |
+| Maj + lettre                                              | Faire le mouvement inverse   |
+| Option sur Mac, ou Alt sur Windows/Linux + lettre de face | Tourner deux couches         |
+
+« Position de départ » accepte les formules et les répétitions, par exemple `(R U R′ U′)2`, et les applique depuis un cube résolu.
+
+## Démarrer en local
+
+Prérequis : **Bun ≥ 1.3** et **Node.js ≥ 22.12**. Le fichier `bun.lock` fixe les versions des dépendances.
 
 ```sh
+git clone https://github.com/lets-cube/sub-40.git
+cd sub-40
 bun install --frozen-lockfile
 bun run dev
 ```
 
-Ouvrir l’adresse affichée par Vite, habituellement `http://localhost:5173`.
+Ouvrir l’adresse affichée par Vite, habituellement [localhost:5173](http://localhost:5173).
 
-## Vérifier et construire
+### Commandes utiles
+
+| Commande           | Usage                                                |
+| ------------------ | ---------------------------------------------------- |
+| `bun run dev`      | Développer avec rechargement automatique             |
+| `bun run check`    | Vérifier lint, format, types et tests                |
+| `bun run lint:fix` | Appliquer les corrections de lint automatiques sûres |
+| `bun run fmt`      | Formater le dépôt avec Oxfmt                         |
+| `bun run build`    | Construire le site dans `dist/`                      |
+| `bun run preview`  | Essayer le site compilé en local                     |
+
+React et TypeScript gèrent l’interface ; le moteur du cube et son rendu SVG sont séparés des composants. Le projet utilise Vite, Vitest, Oxlint et Oxfmt. Les polices sont incluses dans le dépôt.
+
+Le résultat est un **site statique**, à héberger en publiant `dist/`. Il ne demande ni compte, ni base de données, ni serveur applicatif.
+
+## Contribuer
+
+Les corrections de textes, les retours d’apprentissage, les améliorations d’accessibilité et les corrections du simulateur sont les bienvenus.
+
+- **Un bug ?** [Ouvrir une issue](https://github.com/lets-cube/sub-40/issues) avec la formule jouée, le résultat attendu et, si possible, une capture.
+- **Une amélioration ?** Proposer une pull request avec une explication du changement et ses vérifications.
+- **Une première contribution ?** Les textes sont dans `src/data/`, l’interface dans `src/components/`, le moteur dans `src/cube/` et le style dans `src/styles/`.
+
+Avant de proposer une modification :
 
 ```sh
 bun run check
 bun run build
-bun run preview
 ```
 
-`bun run build` vérifie TypeScript puis produit le site dans **`dist/`**. `bun run preview` sert ce résultat localement. Les contrôles sont fournis par [Oxlint](https://oxc.rs/docs/guide/usage/linter) et [Oxfmt](https://oxc.rs/docs/guide/usage/formatter), installés dans le dépôt et exécutés avec Bun :
+Les tests vérifient notamment 310 positions de référence Francocube, les directions des flèches, les mouvements en file et la reprise de l’historique.
 
-```sh
-bun run lint        # Analyse TypeScript, React, hooks, imports et accessibilité
-bun run lint:fix    # Applique les corrections automatiques sûres
-bun run fmt         # Formate le code, les styles, les données et la documentation
-bun run fmt:check   # Vérifie le format sans modifier les fichiers
-bun run check       # Lint + format + types + tests ; s’arrête au premier échec
-```
+Le [guide de contribution](CONTRIBUTING.md) précise comment démarrer, décrire un problème et vérifier les changements.
 
-Le lint refuse les erreurs et les avertissements. Il vérifie notamment les dépendances des hooks et les exports compatibles avec Fast Refresh. Les configurations sont dans `.oxlintrc.json` et `.oxfmtrc.json`. Les dossiers générés, le lockfile et les ressources tierces ne sont pas reformatés. `format` et `format:check` restent des alias des commandes `fmt`.
+## Crédits et licences
 
-Les tests couvrent les 26 algorithmes et leurs masques, 310 états de référence Francocube, les flèches projetées sur les faces, les animations, la saisie répétée, les positions de départ et la reprise depuis l’historique.
+- **Code original de sub 40″** : [licence MIT](LICENSE).
+- **Démonstrations et masques pédagogiques** : adaptés de la [méthode intermédiaire de Deadalnix / Francocube](https://www.francocube.com/deadalnix/moyen), sous [CC BY-SA 2.0 FR](https://creativecommons.org/licenses/by-sa/2.0/fr/). Cette licence reste applicable à ces contenus.
+- **Référence de notation** : [J Perm](https://jperm.net/3x3/moves).
+- **Motifs** : [SpeedCubeReview](https://www.speedcubereview.com/oll-groups.html) et [melody.games](https://cube.melody.games/).
+- **Typographies** : Archivo et Source Serif 4, sous SIL Open Font License. Les notices sont dans [`public/fonts/`](public/fonts/).
 
-## Organisation
-
-```text
-src/
-  App.tsx               Page, navigation et fenêtres
-  components/           Algorithmes, motifs, notation et vue libre
-  cube/
-    engine.ts           Coordonnées des stickers et rotations
-    render.ts           Dessin SVG du cube et des flèches
-    playback.ts         Lecture, file de mouvements et historique
-    notation.ts         Analyse des formules et raccourcis clavier
-    patterns.ts         Repérage des motifs dans les algorithmes
-  data/                 Étapes, textes, 26 cas et motifs en JSON
-  styles/               Styles et typographies locales
-public/
-  favicon.svg           40″, avec le symbole des secondes en rouge
-  fonts/                Archivo et Source Serif 4
-tests/                 Références et tests Vitest
-```
-
-Pour modifier les explications : `src/data/introduction.json` et `src/data/lessons.json`. Les formules et les masques sont dans `src/data/cases.json`. Les couleurs des motifs sont dans `src/data/patterns.json` ; les couleurs du cube et les variables du design dans `src/styles/theme.css`.
-
-React gère toute l’interface. Le calcul des rotations reste indépendant du navigateur et de React ; le rendu SVG est isolé dans `CubeView`. Aucune dépendance au site hébergé sur ChatGPT n’est nécessaire à l’exécution. Les polices et le favicon sont servis localement.
-
-## Utilisation
-
-- Un clic sur un mouvement d’un algorithme place le cube juste avant ce mouvement. Les commandes permettent de lire, avancer, reculer et recommencer.
-- Le grand cube garde les repères U–F–R. Le petit montre F–R–D au début de la méthode, puis U–B–L à partir de l’étape 04.
-- L’aide fléchée est désactivée au chargement et s’active depuis le menu.
-- Les cubes de notation et de la vue libre gardent leur position entre les mouvements. Les saisies rapides sont mises en file.
-- Dans la vue libre, cliquer sur un coup de l’historique retrouve la position après ce coup. Jouer un nouveau mouvement crée une suite à partir de cette position.
-- « Position de départ » applique une formule depuis un cube résolu. Les parenthèses et répétitions sont acceptées ; une formule invalide n’altère pas le cube.
-- Au clavier : R, L, U, D, F, B, M, E, S, X, Y, Z ; Maj pour l’inverse ; Option sur Mac ou Alt sur Windows/Linux pour les deux couches.
-
-## Hébergement
-
-L’application est entièrement statique : **commande de build `bun run build`, dossier à publier `dist/`**. Elle ne demande ni serveur applicatif, ni base de données, ni authentification.
-
-La configuration GitHub Actions et Cloudflare sera ajoutée séparément. Aucun workflow de déploiement, fichier Wrangler ou secret Cloudflare n’est fourni ici. Pour Cloudflare Pages, sélectionner la racine de ce dépôt, utiliser la commande de build ci-dessus et le répertoire de sortie `dist`. Pour Cloudflare Workers avec Static Assets, servir ce même répertoire.
-
-Le routage utilise les ancres de la page (`#etape-4`, par exemple) ; il ne nécessite pas de réécriture de routes. L’hébergement est prévu à la racine d’un domaine. Pour un sous-répertoire, adapter `base` dans `vite.config.ts` et les chemins des ressources publiques.
-
-## Sources et crédits
-
-Les 26 démonstrations et masques proviennent de la [méthode intermédiaire de Deadalnix / Francocube](https://www.francocube.com/deadalnix/moyen), adaptés sous [CC BY-SA 2.0 FR](https://creativecommons.org/licenses/by-sa/2.0/fr/). Leurs références sont conservées dans `tests/francocube-reference.json`.
-
-Notations : [J Perm](https://jperm.net/3x3/moves). Motifs : [SpeedCubeReview](https://www.speedcubereview.com/oll-groups.html) et [melody.games](https://cube.melody.games/). Polices : Archivo et Source Serif 4, distribuées sous SIL Open Font License ; notices dans `public/fonts/`.
-
-Le dessin du cube, les flèches et l’interface ont été recréés pour sub 40″. Les détails de la reprise de l’ancien projet sont dans `docs/MIGRATION.md`.
+Le logo utilise Archivo 800, largeur 75 %, convertie en tracés SVG pour s’afficher avec la même typographie sur tous les supports.
