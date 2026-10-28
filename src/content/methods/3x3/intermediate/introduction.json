@@ -1,0 +1,6 @@
+[
+  "Le principe est de résoudre la première couronne en laissant un coin libre. Cet emplacement permet d’insérer trois arêtes de la deuxième couronne en quelques mouvements. On termine ensuite le dernier coin et la dernière arête avec des algorithmes proches de ceux des méthodes débutantes.",
+  "Pour finir, on forme d’abord une face jaune complète, sans se préoccuper de la position des coins et des arêtes. On les place ensuite au bon endroit.",
+  "Pour suivre les exemples, commencez toujours par le blanc : c’est l’approche « white-only », celle d’un single-color solver. Construisez ensuite les couronnes, puis terminez par le jaune.",
+  "Sur les vues en perspective, la face F (Front), dessinée à gauche, est celle à tenir devant vous. Dans les exemples, elle reste bleue pour faciliter le repérage. Gardez cette orientation pendant la formule, sauf si un mouvement x, y ou z demande de tourner le cube entier. Avec l’expérience, vous pourrez choisir une autre face avant."
+]

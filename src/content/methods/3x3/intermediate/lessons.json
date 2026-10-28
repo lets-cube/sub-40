@@ -1,0 +1,79 @@
+[
+  {
+    "number": 1,
+    "title": "Première face",
+    "explanation": "Construisez la croix blanche en bas, puis insérez trois coins. Gardez le dernier emplacement libre pour la suite.",
+    "goal": "Une croix et trois coins blancs en bas.",
+    "caseIds": [1, 2, 3, 4],
+    "diagram": {
+      "columns": 3,
+      "tiles": [6, 6, 6, 6, 2, 6, 2, 2, 6]
+    }
+  },
+  {
+    "number": 2,
+    "title": "Première couronne",
+    "explanation": "Servez-vous du coin laissé libre pour insérer trois arêtes de la couche centrale. Regardez comment la séquence de base déplace une arête.",
+    "goal": "Trois arêtes du deuxième étage sont placées.",
+    "caseIds": [5, 6],
+    "diagram": {
+      "columns": 3,
+      "tiles": [6, 6, 6, 6, 2, 2, 2, 2, 6]
+    }
+  },
+  {
+    "number": 3,
+    "title": "Deuxième couronne",
+    "explanation": "Insérez le dernier coin blanc, puis la dernière arête. Les exemples montrent aussi comment réinsérer une arête mal orientée.",
+    "goal": "Les deux couches du bas sont terminées.",
+    "caseIds": [7, 8, 9, 10],
+    "diagram": {
+      "columns": 3,
+      "tiles": [6, 6, 6, 2, 2, 2, 2, 2, 2]
+    }
+  },
+  {
+    "number": 4,
+    "title": "La croix",
+    "explanation": "Repérez les arêtes jaunes sur le dessus : une ligne, un angle ou seulement le centre. Choisissez le schéma correspondant avant de jouer la formule.",
+    "goal": "Une croix jaune apparaît sur la face du haut.",
+    "caseIds": [11, 12, 13],
+    "diagram": {
+      "columns": 3,
+      "tiles": [6, 0, 6, 0, 0, 0, 6, 0, 6]
+    }
+  },
+  {
+    "number": 5,
+    "title": "Deuxième face",
+    "explanation": "Comparez les coins jaunes de votre cube au schéma. Les arêtes de la croix restent orientées ; seule l’orientation des coins vous intéresse ici.",
+    "goal": "Toute la face du haut est jaune.",
+    "caseIds": [14, 15, 16, 17, 18, 19, 20],
+    "diagram": {
+      "columns": 3,
+      "tiles": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
+  },
+  {
+    "number": 6,
+    "title": "Placer les coins",
+    "explanation": "Tournez le haut pour aligner deux coins avec les centres latéraux. Comparez les couleurs des coins restants, puis appliquez le cas adapté.",
+    "goal": "Les quatre coins sont à leur place.",
+    "caseIds": [21, 22],
+    "diagram": {
+      "columns": 3,
+      "tiles": [2, 3, 2, 2, 2, 2, 2, 2, 2]
+    }
+  },
+  {
+    "number": 7,
+    "title": "Placer les arêtes",
+    "explanation": "Les coins sont placés : il reste à permuter les arêtes du haut. Comparez leurs couleurs aux centres et choisissez le schéma qui correspond.",
+    "goal": "Les six faces du cube sont résolues.",
+    "caseIds": [23, 24, 25, 26],
+    "diagram": {
+      "columns": 3,
+      "tiles": [2, 2, 2, 2, 2, 2, 2, 2, 2]
+    }
+  }
+]

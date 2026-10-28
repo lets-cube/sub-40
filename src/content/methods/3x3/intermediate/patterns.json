@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sexy",
+    "name": "Sexy move",
+    "alg": "R U R' U'",
+    "source": "https://www.speedcubereview.com/oll-groups.html",
+    "color": "#b92b70",
+    "background": "#fce6f1"
+  },
+  {
+    "id": "inverse-sexy",
+    "name": "Sexy move inverse",
+    "alg": "U R U' R'",
+    "source": "https://www.speedcubereview.com/oll-groups.html",
+    "color": "#7044af",
+    "background": "#eee6fa"
+  },
+  {
+    "id": "sledgehammer",
+    "name": "Sledgehammer",
+    "alg": "R' F R F'",
+    "source": "https://www.speedcubereview.com/oll-groups.html",
+    "color": "#246ba3",
+    "background": "#e4f0fb"
+  }
+]
