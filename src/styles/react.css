@@ -1,0 +1,39 @@
+/* React component boundaries use the same drawing and layout as the original site. */
+.close svg {
+  width: 24px;
+  height: 24px;
+}
+.menu-tools .arrow-toggle {
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+.source-notation {
+  margin-top: 8px;
+  font: 400 11px / 1.5 var(--sans);
+}
+.source-notation summary {
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.source-notation p {
+  font: 500 13px / 1.5 var(--sans);
+  margin: 8px 0;
+}
+#patterns .formula-meta {
+  display: flex;
+}
+.toast:not(.visible) {
+  visibility: hidden;
+}
+#setup-error {
+  color: #a92b20;
+  font: 400 12px / 1.4 var(--sans);
+}
+.setup-input-row input[aria-invalid="true"] {
+  border-color: #a92b20 !important;
+}
+.formula .pattern-chunk .move.pattern-hit.played {
+  color: var(--motif-color);
+}

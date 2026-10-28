@@ -1,0 +1,583 @@
+[
+  {
+    "alg": "RFL'DF'L2",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "6", "1", "6", "6", "1", "6"],
+      "Front": ["6", "6", "6", "6", "2", "6", "6", "2", "6"],
+      "Right": ["6", "6", "6", "6", "3", "6", "6", "3", "6"],
+      "Back": ["6", "6", "6", "6", "4", "6", "6", "4", "6"],
+      "Down": ["6", "5", "6", "5", "5", "5", "6", "5", "6"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RFL'DF'L2",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "La croix",
+    "label": "ALGO 01",
+    "id": 1
+  },
+  {
+    "alg": "yRU2R'U'RUR'yRU'R'yRUR'y",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "6", "1", "6", "1", "1", "1"],
+      "Front": ["6", "6", "6", "6", "2", "6", "2", "2", "6"],
+      "Right": ["6", "6", "6", "6", "3", "6", "6", "3", "3"],
+      "Back": ["6", "6", "6", "6", "4", "6", "4", "4", "4"],
+      "Down": ["5", "5", "6", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "yRU2R'U'RUR'yRU'R'yRUR'y",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "Les coins",
+    "label": "ALGO 02",
+    "id": 2
+  },
+  {
+    "alg": "RFL'DF'L2yRU2R'U'RUR'yRU'R'yRUR'y",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "6", "1", "6", "1", "1", "1"],
+      "Front": ["6", "6", "6", "6", "2", "6", "2", "2", "6"],
+      "Right": ["6", "6", "6", "6", "3", "6", "6", "3", "3"],
+      "Back": ["6", "6", "6", "6", "4", "6", "4", "4", "4"],
+      "Down": ["5", "5", "6", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RFL'DF'L2yRU2R'U'RUR'yRU'R'yRUR'y",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "L’ensemble",
+    "label": "ALGO 03",
+    "id": 3
+  },
+  {
+    "alg": "R'URU2'R'U'RU2L'U'LU'LU'L'U2'LUL'",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "6", "1", "6", "1", "1", "1"],
+      "Front": ["6", "6", "6", "6", "2", "6", "2", "2", "6"],
+      "Right": ["6", "6", "6", "6", "3", "6", "6", "3", "3"],
+      "Back": ["6", "6", "6", "6", "4", "6", "4", "4", "4"],
+      "Down": ["5", "5", "6", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "R'URU2'R'U'RU2L'U'LU'LU'L'U2'LUL'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "Sans regrip",
+    "label": "ALGO 04",
+    "id": 4
+  },
+  {
+    "alg": "RU'R'",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "1", "1", "6", "1", "1", "1"],
+      "Front": ["6", "6", "6", "6", "2", "2", "2", "2", "6"],
+      "Right": ["6", "6", "6", "3", "3", "3", "6", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "6", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RU'R'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "Séquence de base",
+    "label": "ALGO 05",
+    "id": 5
+  },
+  {
+    "alg": "uRU'R'uRUR'u2F'UF",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "1", "1", "6", "1", "1", "1"],
+      "Front": ["6", "6", "6", "6", "2", "2", "2", "2", "6"],
+      "Right": ["6", "6", "6", "3", "3", "3", "6", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "6", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "uRU'R'uRUR'u2F'UF",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "Exemple complet",
+    "label": "ALGO 06",
+    "id": 6
+  },
+  {
+    "alg": "(R'U')2R'(UR)2",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "(R'U')2R'(UR)2",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "Le dernier coin",
+    "label": "ALGO 07",
+    "id": 7
+  },
+  {
+    "alg": "URUR'U'F'U'F",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "URUR'U'F'U'F",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "L’arête · option 1",
+    "label": "ALGO 08",
+    "id": 8
+  },
+  {
+    "alg": "RUR'U2'RU2'R'UF'U'F",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RUR'U2'RU2'R'UF'U'F",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "L’arête · option 2",
+    "label": "ALGO 09",
+    "id": 9
+  },
+  {
+    "alg": "RUR'(R'U')2R'(UR)2D'",
+    "faces": {
+      "Up": ["6", "6", "6", "6", "0", "6", "6", "6", "6"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RUR'(R'U')2R'(UR)2D'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "name": "Retourner une arête",
+    "label": "ALGO 10",
+    "id": 10
+  },
+  {
+    "alg": "FRUR'U'F'",
+    "faces": {
+      "Up": ["6", "0", "6", "0", "0", "0", "6", "0", "6"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "FRUR'U'F'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "Cas 1 · ligne",
+    "label": "ALGO 11",
+    "id": 11
+  },
+  {
+    "alg": "fRUR'U'f'",
+    "faces": {
+      "Up": ["6", "0", "6", "0", "0", "0", "6", "0", "6"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "fRUR'U'f'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "Cas 2 · angle",
+    "label": "ALGO 12",
+    "id": 12
+  },
+  {
+    "alg": "FRUR'U'F'fRUR'U'f'",
+    "faces": {
+      "Up": ["6", "0", "6", "0", "0", "0", "6", "0", "6"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "FRUR'U'F'fRUR'U'f'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "Cas 3 · point",
+    "label": "ALGO 13",
+    "id": 13
+  },
+  {
+    "alg": "RUR'URU2R'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RUR'URU2R'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "Sune · OLL 27",
+    "label": "OLL 27",
+    "recognition": "Un seul coin jaune orienté, devant à gauche ; un jaune latéral devant à droite.",
+    "id": 14
+  },
+  {
+    "alg": "RU2'R'U'RU'R'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RU2'R'U'RU'R'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "Antisune · OLL 26",
+    "label": "OLL 26",
+    "recognition": "Un seul coin jaune orienté, derrière à droite ; un jaune latéral devant à gauche.",
+    "id": 15
+  },
+  {
+    "alg": "RU(R'URU')2U'R'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RU(R'URU')2U'R'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "H · OLL 21",
+    "label": "OLL 21",
+    "recognition": "Aucun coin jaune orienté ; deux paires de jaunes sur des faces opposées.",
+    "id": 16
+  },
+  {
+    "alg": "RU2'R2'U'R2U'R2'U2R",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RU2'R2'U'R2U'R2'U2R",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "Pi · OLL 22",
+    "label": "OLL 22",
+    "recognition": "Aucun coin jaune orienté ; une seule paire de jaunes sur un même côté.",
+    "id": 17
+  },
+  {
+    "alg": "l'U'RD'R'URDx'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "l'U'RD'R'URDx'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "T · OLL 24",
+    "label": "OLL 24",
+    "recognition": "Deux coins voisins orientés ; les deux jaunes latéraux sont sur des faces opposées.",
+    "id": 18
+  },
+  {
+    "alg": "l'URD'R'U'RDx'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "l'URD'R'U'RDx'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "L / nœud papillon · OLL 25",
+    "label": "OLL 25",
+    "recognition": "Deux coins jaunes orientés en diagonale.",
+    "id": 19
+  },
+  {
+    "alg": "R2DR'U2RD'R'U2R'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["6", "6", "6", "1", "1", "1", "1", "1", "1"],
+      "Front": ["6", "6", "6", "2", "2", "2", "2", "2", "2"],
+      "Right": ["6", "6", "6", "3", "3", "3", "3", "3", "3"],
+      "Back": ["6", "6", "6", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "R2DR'U2RD'R'U2R'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "name": "U / phares · OLL 23",
+    "label": "OLL 23",
+    "recognition": "Deux coins voisins orientés ; les deux autres jaunes forment une paire sur la face avant.",
+    "id": 20
+  },
+  {
+    "alg": "RUR'U'R'FR2U'R'U'RUR'F'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["1", "6", "1", "1", "1", "1", "1", "1", "1"],
+      "Front": ["2", "6", "2", "2", "2", "2", "2", "2", "2"],
+      "Right": ["3", "6", "3", "3", "3", "3", "3", "3", "3"],
+      "Back": ["4", "6", "4", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "RUR'U'R'FR2U'R'U'RUR'F'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "training": true,
+    "name": "Coins voisins · T",
+    "label": "T",
+    "recognition": "Une paire de coins de même couleur à gauche ; deux coins voisins restent à échanger.",
+    "id": 21
+  },
+  {
+    "alg": "FRU'R'U'RUR'F'RUR'U'R'FRF'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["1", "6", "1", "1", "1", "1", "1", "1", "1"],
+      "Front": ["2", "6", "2", "2", "2", "2", "2", "2", "2"],
+      "Right": ["3", "6", "3", "3", "3", "3", "3", "3", "3"],
+      "Back": ["4", "6", "4", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "FRU'R'U'RUR'F'RUR'U'R'FRF'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "training": true,
+    "name": "Coins opposés · Y",
+    "label": "Y",
+    "recognition": "Aucune paire de coins de même couleur sur un côté ; deux coins opposés à échanger.",
+    "id": 22
+  },
+  {
+    "alg": "R2U'R'U'RURURU'R",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["1", "1", "1", "1", "1", "1", "1", "1", "1"],
+      "Front": ["2", "2", "2", "2", "2", "2", "2", "2", "2"],
+      "Right": ["3", "3", "3", "3", "3", "3", "3", "3", "3"],
+      "Back": ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "R2U'R'U'RURURU'R",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "training": true,
+    "name": "Ua",
+    "label": "PLL",
+    "recognition": "Les coins sont placés ; la face avant est terminée et les trois autres arêtes tournent en cycle.",
+    "id": 23
+  },
+  {
+    "alg": "R'UR'U'R'U'R'URUR2",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["1", "1", "1", "1", "1", "1", "1", "1", "1"],
+      "Front": ["2", "2", "2", "2", "2", "2", "2", "2", "2"],
+      "Right": ["3", "3", "3", "3", "3", "3", "3", "3", "3"],
+      "Back": ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "R'UR'U'R'U'R'URUR2",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "training": true,
+    "name": "Ub",
+    "label": "PLL",
+    "recognition": "Les coins sont placés ; la face avant est terminée et le cycle des trois arêtes est inverse de Ua.",
+    "id": 24
+  },
+  {
+    "alg": "M2'UM2'U2M2'UM2'",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["1", "1", "1", "1", "1", "1", "1", "1", "1"],
+      "Front": ["2", "2", "2", "2", "2", "2", "2", "2", "2"],
+      "Right": ["3", "3", "3", "3", "3", "3", "3", "3", "3"],
+      "Back": ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "M2'UM2'U2M2'UM2'",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "training": true,
+    "name": "H",
+    "label": "PLL",
+    "recognition": "Les deux paires d’arêtes opposées sont à échanger.",
+    "id": 25
+  },
+  {
+    "alg": "UR'U'RU'RURU'R'URUR2U'R'U",
+    "faces": {
+      "Up": ["0", "0", "0", "0", "0", "0", "0", "0", "0"],
+      "Left": ["1", "1", "1", "1", "1", "1", "1", "1", "1"],
+      "Front": ["2", "2", "2", "2", "2", "2", "2", "2", "2"],
+      "Right": ["3", "3", "3", "3", "3", "3", "3", "3", "3"],
+      "Back": ["4", "4", "4", "4", "4", "4", "4", "4", "4"],
+      "Down": ["5", "5", "5", "5", "5", "5", "5", "5", "5"]
+    },
+    "variants": [
+      {
+        "name": "Francocube",
+        "alg": "UR'U'RU'RURU'R'URUR2U'R'U",
+        "source": "https://www.francocube.com/deadalnix/moyen"
+      }
+    ],
+    "previewCamera": "back",
+    "training": true,
+    "name": "Z",
+    "label": "PLL",
+    "recognition": "Deux paires d’arêtes voisines sont à échanger.",
+    "id": 26
+  }
+]
