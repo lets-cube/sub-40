@@ -60,25 +60,30 @@ export function makeCube(faces: FaceMap): Cube {
   );
 }
 export function parseAlg(text: string): string[] {
-  let s = text.replaceAll('′', "'").replace(/([RLUDFB])w/g, (_, f: string) => f.toLowerCase()),
-    previous: string;
+  let s = text.replaceAll('′', "'").replace(/([RLUDFB])w/g, (_, f: string) => f.toLowerCase());
+  let previous: string;
   do {
     previous = s;
     s = s.replace(/\(([^()]*)\)(\d+)/g, (_, g: string, n: string) => (g + ' ').repeat(Number(n)));
   } while (previous !== s);
   return s.match(/[RLUDFBMESxyzrludfb](?:2'?|'2?|)?/g) || [];
 }
+const amount = (move: string) => (move.includes('2') ? 2 : move.endsWith("'") ? -1 : 1);
 export function lessonMoves(alg: string): string[] {
   const moves: string[] = [];
-  const amount = (m: string) => (m.includes('2') ? 2 : m.endsWith("'") ? -1 : 1);
+
   for (const raw of parseAlg(alg)) {
-    const move = raw.includes('2') ? raw[0] + '2' : raw,
-      last = moves.at(-1);
+    const move = raw.includes('2') ? raw[0] + '2' : raw;
+    const last = moves.at(-1);
     if (last && last[0] === move[0]) {
       const count = (((amount(last) + amount(move)) % 4) + 4) % 4;
       moves.pop();
-      if (count) moves.push(move[0] + (count === 2 ? '2' : count === 3 ? "'" : ''));
-    } else moves.push(move);
+      if (count) {
+        moves.push(move[0] + (count === 2 ? '2' : count === 3 ? "'" : ''));
+      }
+    } else {
+      moves.push(move);
+    }
   }
   return moves;
 }
@@ -92,15 +97,17 @@ export function sourceNotation(alg: string) {
 }
 export function invertAlg(alg: string) {
   return parseAlg(alg)
-    .reverse()
+    .toReversed()
     .map((m) => (m.includes('2') ? m[0] + '2' : m.endsWith("'") ? m[0] : m + "'"))
     .join(' ');
 }
 export function moveSpec(move: string, inverse = false) {
   const f = move[0];
-  let axis: number, dir: number, layers: number[];
-  const axes: Record<string, number> = { R: 0, L: 0, U: 1, D: 1, F: 2, B: 2 },
-    dirs: Record<string, number> = { R: -1, L: 1, U: -1, D: 1, F: -1, B: 1 };
+  let axis: number;
+  let dir: number;
+  let layers: number[];
+  const axes: Record<string, number> = { R: 0, L: 0, U: 1, D: 1, F: 2, B: 2 };
+  const dirs: Record<string, number> = { R: -1, L: 1, U: -1, D: 1, F: -1, B: 1 };
   if ('xyz'.includes(f)) {
     axis = 'xyz'.indexOf(f);
     dir = -1;
@@ -116,14 +123,18 @@ export function moveSpec(move: string, inverse = false) {
     const layer = 'RUF'.includes(face) ? 1 : -1;
     layers = f === face ? [layer] : [layer, 0];
   }
-  if (move.includes("'")) dir *= -1;
-  if (inverse) dir *= -1;
+  if (move.includes("'")) {
+    dir *= -1;
+  }
+  if (inverse) {
+    dir *= -1;
+  }
   return { f, axis, dir, layers, angle: ((dir * Math.PI) / 2) * (move.includes('2') ? 2 : 1) };
 }
 export function rotation(v: number[], axis: number, angle: number): number[] {
-  const c = Math.cos(angle),
-    s = Math.sin(angle),
-    [x, y, z] = v;
+  const c = Math.cos(angle);
+  const s = Math.sin(angle);
+  const [x, y, z] = v;
   return axis === 0
     ? [x, y * c - z * s, y * s + z * c]
     : axis === 1
@@ -132,17 +143,18 @@ export function rotation(v: number[], axis: number, angle: number): number[] {
 }
 export function turn(cube: Cube, move: string, inverse = false): Cube {
   const { axis, layers, angle } = moveSpec(move, inverse);
-  for (const s of cube)
+  for (const s of cube) {
     if (layers.includes(s.p[axis])) {
       s.p = rotation(s.p, axis, angle).map(Math.round);
       s.n = rotation(s.n, axis, angle).map(Math.round);
     }
+  }
   return cube;
 }
 export function initialState(c: { faces: FaceMap; alg: string }): Cube {
   const state = makeCube(c.faces);
   parseAlg(c.alg)
-    .reverse()
+    .toReversed()
     .forEach((m) => turn(state, m, true));
   return state;
 }
@@ -155,7 +167,9 @@ export function solvedCube(): Cube {
   );
 }
 export function moveDescription(move: string | null | undefined) {
-  if (!move) return 'Séquence terminée';
+  if (!move) {
+    return 'Séquence terminée';
+  }
   return `${move.replaceAll("'", '′')} : ${MOVE_NAMES[move[0]]}, ${move.includes('2') ? 'demi-tour' : move.includes("'") ? 'quart de tour antihoraire' : 'quart de tour horaire'}`;
 }
 export function cameraName(camera: Camera = 'front') {

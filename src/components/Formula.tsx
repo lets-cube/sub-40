@@ -1,13 +1,7 @@
 import type { CSSProperties } from 'react';
+
 import { findPatternGroups } from '../cube/patterns';
-const FACE_COLORS: Record<string, string> = { U: 'u', D: 'd', F: 'f', B: 'b', R: 'r', L: 'l' };
-export function faceStyle(move: string): CSSProperties {
-  const color = FACE_COLORS[move[0].toUpperCase()];
-  return {
-    '--face-color': color ? `var(--cube-${color})` : 'var(--ink)',
-    '--active-ink': color ? 'var(--ink)' : 'var(--paper)',
-  } as CSSProperties;
-}
+import { faceStyle } from './move-style';
 export function Formula({
   moves,
   position,
@@ -21,8 +15,8 @@ export function Formula({
 }) {
   const groups = findPatternGroups(moves);
   function token(i: number, pattern = false) {
-    const move = moves[i],
-      current = position !== undefined && i === (history ? position - 1 : position);
+    const move = moves[i];
+    const current = position !== undefined && i === (history ? position - 1 : position);
     const className = [
       'move',
       pattern ? 'pattern-hit' : '',
@@ -58,16 +52,18 @@ export function Formula({
     );
   }
   const children: React.ReactNode[] = [];
-  for (let i = 0; i < moves.length; ) {
+  for (let i = 0; i < moves.length;) {
     const group = groups.find((g) => g.start === i);
     if (group) {
-      const p = group.patterns[0];
+      const pattern = group.patterns[0];
       children.push(
         <span
           key={`p${i}`}
           className="pattern-chunk"
           title={group.patterns.map((p) => p.name).join(' / ')}
-          style={{ '--motif-color': p.color, '--motif-bg': p.background } as CSSProperties}
+          style={
+            { '--motif-color': pattern.color, '--motif-bg': pattern.background } as CSSProperties
+          }
         >
           {Array.from({ length: group.end - i }, (_, j) => token(i + j, true))}
         </span>,

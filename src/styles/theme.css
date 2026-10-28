@@ -24,8 +24,8 @@
   --green: var(--ink);
   --soft: var(--neutral-bg);
   --light: var(--neutral-bg);
-  --sans: "Archivo", "Arial Narrow", Arial, sans-serif;
-  --serif: "Source Serif 4", Georgia, serif;
+  --sans: 'Archivo', 'Arial Narrow', Arial, sans-serif;
+  --serif: 'Source Serif 4', Georgia, serif;
   --page-max: 1360px;
   --page-pad: clamp(16px, 4vw, 48px);
   --rule: 1px;
@@ -117,7 +117,7 @@ button:hover {
   display: none;
 }
 .notation-shortcut::after {
-  content: "Notation";
+  content: 'Notation';
   font: 600 13px var(--sans);
 }
 .outline,
@@ -164,7 +164,7 @@ button:hover {
 .hero h1 {
   font: 800 clamp(64px, 9.1vw, 128px) / 0.86 var(--sans);
   font-stretch: 72%;
-  font-variation-settings: "wdth" 72;
+  font-variation-settings: 'wdth' 72;
   letter-spacing: -0.025em;
   margin: 0;
   overflow-wrap: normal;
@@ -250,7 +250,7 @@ button:hover {
 .index-grid b {
   font: 800 40px / 0.9 var(--sans);
   font-stretch: 75%;
-  font-variation-settings: "wdth" 75;
+  font-variation-settings: 'wdth' 75;
 }
 .index-grid strong {
   grid-column: 1 / -1;
@@ -330,7 +330,7 @@ button:hover {
 .sidebar-actions svg {
   width: 16px;
 }
-.arrow-toggle[aria-pressed="true"] {
+.arrow-toggle[aria-pressed='true'] {
   background: var(--ink);
   color: var(--paper);
   border-color: var(--ink);
@@ -356,7 +356,7 @@ button:hover {
   grid-row: 1 / 3;
   font: 800 88px / 0.8 var(--sans);
   font-stretch: 72%;
-  font-variation-settings: "wdth" 72;
+  font-variation-settings: 'wdth' 72;
   color: var(--ink);
   text-align: left;
   flex: none;
@@ -675,7 +675,7 @@ dialog::backdrop {
 .modal-header h2 {
   font: 800 48px / 0.95 var(--sans);
   font-stretch: 72%;
-  font-variation-settings: "wdth" 72;
+  font-variation-settings: 'wdth' 72;
   letter-spacing: -0.025em;
   margin: 0;
 }
@@ -716,7 +716,7 @@ dialog::backdrop {
 .segmented button:last-child {
   border-right: 0;
 }
-.segmented button[aria-pressed="true"] {
+.segmented button[aria-pressed='true'] {
   background: var(--ink);
   color: var(--paper);
 }
@@ -739,7 +739,7 @@ dialog::backdrop {
   background: var(--line);
   border: var(--rule) solid var(--line);
 }
-.notation-family[data-family="rotations"] {
+.notation-family[data-family='rotations'] {
   background: none;
   border: 0;
 }
@@ -872,12 +872,12 @@ kbd {
   grid-column: 1 / -1;
   grid-row: 3;
   grid-template-columns: minmax(0, 1fr) 260px;
-  grid-template-areas: "stage panel";
+  grid-template-areas: 'stage panel';
   gap: 18px;
 }
 #free-view .free-stage {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-areas: "rotations up back slices" "left cube cube right" ". front down .";
+  grid-template-areas: 'rotations up back slices' 'left cube cube right' '. front down .';
   gap: 10px 4px;
   max-width: 660px;
   align-items: center;
@@ -1227,10 +1227,10 @@ kbd {
     width: 40px;
     flex-basis: 40px;
   }
-  .notation-family[data-family="rotations"] .notation-card {
+  .notation-family[data-family='rotations'] .notation-card {
     max-width: none;
   }
-  .notation-family[data-family="rotations"] .cube-mount > .cube-view {
+  .notation-family[data-family='rotations'] .cube-mount > .cube-view {
     width: 170px;
     flex-basis: 170px;
   }
@@ -1300,7 +1300,7 @@ kbd {
   #free-cube {
     grid-row: 3;
     grid-template-columns: 1fr;
-    grid-template-areas: "stage" "panel";
+    grid-template-areas: 'stage' 'panel';
     gap: 18px;
   }
   #free-view .command-button {
@@ -1515,7 +1515,7 @@ kbd {
     width: 56px;
     flex-basis: 56px;
   }
-  .notation-family[data-family="rotations"] .cube-mount > .cube-view {
+  .notation-family[data-family='rotations'] .cube-mount > .cube-view {
     width: 200px;
     flex-basis: 200px;
   }
@@ -1575,7 +1575,7 @@ kbd {
   }
   #free-view .free-stage {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-areas: "cube cube" "up down" "front back" "left right" "slices rotations";
+    grid-template-areas: 'cube cube' 'up down' 'front back' 'left right' 'slices rotations';
     gap: 18px 10px;
   }
   #free-view .free-key-group h3 {
@@ -1909,7 +1909,7 @@ kbd {
 .menu-tools button:hover {
   background: var(--neutral-bg);
 }
-.menu-tools .arrow-toggle[aria-pressed="true"] {
+.menu-tools .arrow-toggle[aria-pressed='true'] {
   background: var(--ink);
   color: var(--paper);
 }

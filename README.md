@@ -18,13 +18,22 @@ Ouvrir l’adresse affichée par Vite, habituellement `http://localhost:5173`.
 ## Vérifier et construire
 
 ```sh
-bun run typecheck
-bun run test
+bun run check
 bun run build
 bun run preview
 ```
 
-`bun run build` vérifie TypeScript puis produit le site dans **`dist/`**. `bun run preview` sert ce résultat localement. Pour formater les sources : `bun run format` ; pour contrôler le format : `bun run format:check`.
+`bun run build` vérifie TypeScript puis produit le site dans **`dist/`**. `bun run preview` sert ce résultat localement. Les contrôles sont fournis par [Oxlint](https://oxc.rs/docs/guide/usage/linter) et [Oxfmt](https://oxc.rs/docs/guide/usage/formatter), installés dans le dépôt et exécutés avec Bun :
+
+```sh
+bun run lint        # Analyse TypeScript, React, hooks, imports et accessibilité
+bun run lint:fix    # Applique les corrections automatiques sûres
+bun run fmt         # Formate le code, les styles, les données et la documentation
+bun run fmt:check   # Vérifie le format sans modifier les fichiers
+bun run check       # Lint + format + types + tests ; s’arrête au premier échec
+```
+
+Le lint refuse les erreurs et les avertissements. Il vérifie notamment les dépendances des hooks et les exports compatibles avec Fast Refresh. Les configurations sont dans `.oxlintrc.json` et `.oxfmtrc.json`. Les dossiers générés, le lockfile et les ressources tierces ne sont pas reformatés. `format` et `format:check` restent des alias des commandes `fmt`.
 
 Les tests couvrent les 26 algorithmes et leurs masques, 310 états de référence Francocube, les flèches projetées sur les faces, les animations, la saisie répétée, les positions de départ et la reprise depuis l’historique.
 

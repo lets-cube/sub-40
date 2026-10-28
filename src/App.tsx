@@ -1,17 +1,33 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
-import { CASES, INTRODUCTION, LESSONS, PATTERNS, objectiveTiles } from './data/method';
-import { EnvironmentProvider, useEnvironment, type ModalName } from './components/Environment';
-import { AlgorithmCard, PatternCard } from './components/Players';
-import { ArrowToggle, FreeExplorer, NotationExplorer } from './components/Interactive';
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+
+import { EnvironmentProvider } from './components/Environment';
 import { Icon, type IconName } from './components/Icons';
+import { ArrowToggle, FreeExplorer, NotationExplorer } from './components/Interactive';
+import { AlgorithmCard, PatternCard } from './components/Players';
+import { CASES, INTRODUCTION, LESSONS, PATTERNS, objectiveTiles } from './data/method';
+import { useEnvironment, type ModalName } from './state/environment';
 
 function Objective({ index }: { index: number }) {
   return (
-    <span className="objective-diagram" role="img" aria-label={LESSONS[index].goal}>
-      {objectiveTiles(index).map((color, i) => (
-        <i key={i} style={{ '--tile': `var(--cube-${color})` } as CSSProperties} />
+    <svg
+      className="objective-diagram"
+      width="40"
+      height="40"
+      viewBox="0 0 40 40"
+      aria-label={LESSONS[index].goal}
+    >
+      <title>{LESSONS[index].goal}</title>
+      {objectiveTiles(index).map((color, tile) => (
+        <rect
+          key={tile}
+          x={(tile % 3) * 14}
+          y={Math.floor(tile / 3) * 14}
+          width="12"
+          height="12"
+          fill={`var(--cube-${color})`}
+        />
       ))}
-    </span>
+    </svg>
   );
 }
 const TOOLS: { modal: ModalName; name: string; icon: IconName; attribute: string }[] = [
@@ -20,11 +36,13 @@ const TOOLS: { modal: ModalName; name: string; icon: IconName; attribute: string
   { modal: 'free-view', name: 'Vue libre', icon: 'cube', attribute: 'data-free-view' },
 ];
 function Header({ expand }: { expand: (index: number) => void }) {
-  const env = useEnvironment(),
-    menu = useRef<HTMLDetailsElement>(null);
+  const env = useEnvironment();
+  const menu = useRef<HTMLDetailsElement>(null);
   useEffect(() => {
     const close = (e: PointerEvent) => {
-      if (!menu.current?.contains(e.target as Node) && menu.current) menu.current.open = false;
+      if (!menu.current?.contains(e.target as Node) && menu.current) {
+        menu.current.open = false;
+      }
     };
     const escape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && menu.current?.open) {
@@ -40,7 +58,9 @@ function Header({ expand }: { expand: (index: number) => void }) {
     };
   }, []);
   function open(modal: ModalName) {
-    if (menu.current) menu.current.open = false;
+    if (menu.current) {
+      menu.current.open = false;
+    }
     env.open(modal);
   }
   const tools = (className: string) =>
@@ -57,9 +77,9 @@ function Header({ expand }: { expand: (index: number) => void }) {
       </button>
     ));
   return (
-    <header className="topbar">
+    <header className="topbar" id="top">
       <div className="wrap">
-        <a href="#" className="brand" aria-label="sub 40 secondes, accueil">
+        <a href="#top" className="brand" aria-label="sub 40 secondes, accueil">
           sub 40″
         </a>
         <div className="top-actions">
@@ -85,7 +105,9 @@ function Header({ expand }: { expand: (index: number) => void }) {
                     href={`#etape-${lesson.number}`}
                     onClick={() => {
                       expand(i);
-                      if (menu.current) menu.current.open = false;
+                      if (menu.current) {
+                        menu.current.open = false;
+                      }
                     }}
                   >
                     <span className="num">{String(lesson.number).padStart(2, '0')}</span>
@@ -101,14 +123,40 @@ function Header({ expand }: { expand: (index: number) => void }) {
   );
 }
 function Modal({ id, title, children }: { id: ModalName; title: string; children: ReactNode }) {
-  const env = useEnvironment(),
-    dialog = useRef<HTMLDialogElement>(null),
-    active = env.modal === id;
+  const env = useEnvironment();
+  const dialog = useRef<HTMLDialogElement>(null);
+  const active = env.modal === id;
   useEffect(() => {
     const el = dialog.current!;
-    if (active && !el.open) el.showModal();
-    else if (!active && el.open) el.close();
+    if (active && !el.open) {
+      el.showModal();
+    } else if (!active && el.open) {
+      el.close();
+    }
   }, [active]);
+  const { open } = env;
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element) {
+      return;
+    }
+    const closeBackdrop = (event: MouseEvent) => {
+      if (event.target !== element) {
+        return;
+      }
+      const rect = element.getBoundingClientRect();
+      if (
+        event.clientX < rect.left ||
+        event.clientX > rect.right ||
+        event.clientY < rect.top ||
+        event.clientY > rect.bottom
+      ) {
+        open(null);
+      }
+    };
+    element.addEventListener('click', closeBackdrop);
+    return () => element.removeEventListener('click', closeBackdrop);
+  }, [open]);
   return (
     <dialog
       id={id}
@@ -117,17 +165,6 @@ function Modal({ id, title, children }: { id: ModalName; title: string; children
       onCancel={(e) => {
         e.preventDefault();
         env.open(null);
-      }}
-      onClick={(e) => {
-        if (e.target !== e.currentTarget) return;
-        const rect = e.currentTarget.getBoundingClientRect();
-        if (
-          e.clientX < rect.left ||
-          e.clientX > rect.right ||
-          e.clientY < rect.top ||
-          e.clientY > rect.bottom
-        )
-          env.open(null);
       }}
     >
       <header className="modal-header">
@@ -150,7 +187,9 @@ function Modals() {
   const env = useEnvironment();
   useEffect(() => {
     const previous = document.body.style.overflow;
-    if (env.modal) document.body.style.overflow = 'hidden';
+    if (env.modal) {
+      document.body.style.overflow = 'hidden';
+    }
     return () => {
       document.body.style.overflow = previous;
     };
@@ -183,7 +222,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="wrap">
-        <a href="#" className="footer-brand">
+        <a href="#top" className="footer-brand">
           sub 40″
         </a>
         <p>
@@ -199,25 +238,28 @@ function Footer() {
           <a href="https://www.speedcubereview.com/oll-groups.html">SpeedCubeReview</a> et{' '}
           <a href="https://cube.melody.games/">melody.games</a>.
         </p>
-        <a href="#">Retour en haut ↑</a>
+        <a href="#top">Retour en haut ↑</a>
       </div>
     </footer>
   );
 }
 function Method() {
-  const [collapsed, setCollapsed] = useState<boolean[]>(() => LESSONS.map(() => false)),
-    env = useEnvironment();
-  const expand = (i: number) =>
+  const [collapsed, setCollapsed] = useState<boolean[]>(() => LESSONS.map(() => false));
+  const env = useEnvironment();
+  const expand = useCallback((i: number) => {
     setCollapsed((previous) => previous.map((value, index) => (index === i ? false : value)));
+  }, []);
   useEffect(() => {
     const reveal = () => {
       const match = location.hash.match(/^#etape-([1-7])$/);
-      if (match) expand(Number(match[1]) - 1);
+      if (match) {
+        expand(Number(match[1]) - 1);
+      }
     };
     reveal();
     window.addEventListener('hashchange', reveal);
     return () => window.removeEventListener('hashchange', reveal);
-  }, []);
+  }, [expand]);
   return (
     <>
       <Header expand={expand} />

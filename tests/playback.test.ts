@@ -1,15 +1,17 @@
 import { createHash } from 'node:crypto';
+
 import { describe, expect, it } from 'vitest';
-import { InteractivePlayback, LessonPlayback, type Clock } from '../src/cube/playback';
+
 import { initialState, lessonMoves, solvedCube, turn, type Cube } from '../src/cube/engine';
 import { keyboardCommand, parseSetupAlg } from '../src/cube/notation';
+import { InteractivePlayback, LessonPlayback, type Clock } from '../src/cube/playback';
 import { CASES } from '../src/data/method';
 const digest = (cube: Cube) =>
   createHash('sha256')
     .update(
       cube
         .map((s) => [...s.p, ...s.n, s.c].map((n) => n || 0).join(','))
-        .sort()
+        .toSorted()
         .join(';'),
     )
     .digest('hex');
@@ -43,11 +45,12 @@ class TestClock implements Clock {
       const callbacks = [...this.frames.values()];
       this.frames.clear();
       callbacks.forEach((cb) => cb(this.time));
-      for (const [id, timer] of this.timers)
+      for (const [id, timer] of this.timers) {
         if (timer.at <= this.time) {
           this.timers.delete(id);
           timer.cb();
         }
+      }
     }
   }
 }
@@ -58,8 +61,8 @@ const expected = (moves: string[]) => {
 };
 describe('persistent interactive cube', () => {
   it('queues rapid inputs without resetting or losing a turn, including four equal turns', () => {
-    const clock = new TestClock(),
-      p = new InteractivePlayback(clock);
+    const clock = new TestClock();
+    const p = new InteractivePlayback(clock);
     ['R', 'R', 'R', 'R'].forEach(p.enqueue);
     clock.advance(100);
     expect(p.getSnapshot().animation?.progress).toBeGreaterThan(0);
@@ -71,8 +74,8 @@ describe('persistent interactive cube', () => {
     expect(digest(p.getSnapshot().cube)).toBe(expected(['R', 'U', "R'", 'u2', 'M', "z'"]));
   });
   it('restores a clicked history position and branches there, discarding only the future', () => {
-    const clock = new TestClock(),
-      p = new InteractivePlayback(clock);
+    const clock = new TestClock();
+    const p = new InteractivePlayback(clock);
     ['R', 'U', "R'", 'F2'].forEach(p.enqueue);
     clock.advance(1600);
     p.seek(2);
@@ -85,8 +88,8 @@ describe('persistent interactive cube', () => {
     expect(digest(p.getSnapshot().cube)).toBe(expected(['R', 'U', 'D']));
   });
   it('cancels in-flight moves on history seek and reset', () => {
-    const clock = new TestClock(),
-      p = new InteractivePlayback(clock);
+    const clock = new TestClock();
+    const p = new InteractivePlayback(clock);
     p.enqueue('R');
     clock.advance(300);
     p.enqueue('U');
@@ -104,12 +107,12 @@ describe('persistent interactive cube', () => {
     expect(digest(p.getSnapshot().cube)).toBe(expected([]));
   });
   it('applies a setup atomically, undoes turns, and clears history without changing position', () => {
-    const clock = new TestClock(),
-      p = new InteractivePlayback(clock);
+    const clock = new TestClock();
+    const p = new InteractivePlayback(clock);
     p.applySetup('(R U R′ U′)2');
     const setup = parseSetupAlg('(R U R′ U′)2');
     expect(digest(p.getSnapshot().cube)).toBe(expected(setup));
-    expect(() => p.applySetup('R U unknown')).toThrow();
+    expect(() => p.applySetup('R U unknown')).toThrow('Notation inconnue');
     expect(digest(p.getSnapshot().cube)).toBe(expected(setup));
     p.enqueue('D2');
     clock.advance(500);
@@ -129,8 +132,8 @@ describe('persistent interactive cube', () => {
 });
 describe('lesson playback', () => {
   it('seeks to the correct original state and supports forward/back/reset', () => {
-    const clock = new TestClock(),
-      p = new LessonPlayback(CASES[15], clock);
+    const clock = new TestClock();
+    const p = new LessonPlayback(CASES[15], clock);
     p.seek(10);
     const expectedCube = initialState(CASES[15]);
     lessonMoves(CASES[15].alg)
@@ -147,8 +150,8 @@ describe('lesson playback', () => {
     expect(digest(p.getSnapshot().cube)).toBe(digest(initialState(CASES[15])));
   });
   it('pause cancels a partial turn, and automatic playback reaches the target', () => {
-    const clock = new TestClock(),
-      p = new LessonPlayback(CASES[0], clock);
+    const clock = new TestClock();
+    const p = new LessonPlayback(CASES[0], clock);
     p.toggle();
     clock.advance(100);
     p.pause();
@@ -188,8 +191,9 @@ describe('setup notation and keyboard', () => {
       '(R U F B L D)99',
       '((((((((((R))))))))))',
       '',
-    ])
-      expect(() => parseSetupAlg(text)).toThrow();
+    ]) {
+      expect(() => parseSetupAlg(text)).toThrow(Error);
+    }
   });
   it('reads Option + physical key on Mac, even when its key value is accented', () => {
     expect(keyboardCommand({ key: '®', code: 'KeyR', altKey: true, shiftKey: false })).toBe('r');

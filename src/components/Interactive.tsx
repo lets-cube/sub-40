@@ -1,9 +1,11 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
-import { InteractivePlayback } from '../cube/playback';
+
 import { fullMoveName, keyboardCommand } from '../cube/notation';
+import { InteractivePlayback } from '../cube/playback';
+import { useEnvironment } from '../state/environment';
 import { CubeView } from './CubeView';
-import { faceStyle, Formula } from './Formula';
-import { useEnvironment } from './Environment';
+import { Formula } from './Formula';
+import { faceStyle } from './move-style';
 
 export function ArrowToggle() {
   const env = useEnvironment();
@@ -64,8 +66,8 @@ export function Commands({ bases, player }: { bases: string[]; player: Interacti
   );
 }
 function InteractiveDrawing({ player }: { player: InteractivePlayback }) {
-  const state = useSyncExternalStore(player.subscribe, player.getSnapshot),
-    { arrows } = useEnvironment();
+  const state = useSyncExternalStore(player.subscribe, player.getSnapshot);
+  const { arrows } = useEnvironment();
   return (
     <CubeView
       cube={state.cube}
@@ -86,7 +88,9 @@ function ExplorerStatus({ player }: { player: InteractivePlayback }) {
 }
 function useKeyboard(active: boolean, choose: (move: string) => void, wide = false) {
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      return;
+    }
     const handle = (event: KeyboardEvent) => {
       if (
         event.ctrlKey ||
@@ -94,8 +98,9 @@ function useKeyboard(active: boolean, choose: (move: string) => void, wide = fal
         event.isComposing ||
         (event.target instanceof HTMLElement &&
           event.target.closest('input,textarea,select,[contenteditable="true"]'))
-      )
+      ) {
         return;
+      }
       const move = keyboardCommand(event, wide);
       if (move) {
         event.preventDefault();
@@ -146,7 +151,9 @@ export function NotationExplorer({ active }: { active: boolean }) {
     active,
     (move) => {
       const index = current.groups.findIndex((group) => group.includes(move[0]));
-      if (index >= 0) players[family][index].enqueue(move);
+      if (index >= 0) {
+        players[family][index].enqueue(move);
+      }
     },
     family === 'wide',
   );
@@ -155,7 +162,7 @@ export function NotationExplorer({ active }: { active: boolean }) {
       <p className="notation-intro">
         Cliquez plusieurs fois pour enchaîner les mouvements. Chaque cube garde sa position.
       </p>
-      <div className="segmented" role="group" aria-label="Famille de mouvements">
+      <fieldset className="segmented" aria-label="Famille de mouvements">
         {FAMILIES.map((f) => (
           <button
             key={f.id}
@@ -166,7 +173,7 @@ export function NotationExplorer({ active }: { active: boolean }) {
             {f.name}
           </button>
         ))}
-      </div>
+      </fieldset>
       <div className="notation-tools">
         <button
           type="button"
@@ -218,11 +225,11 @@ const FREE_GROUPS = [
   { className: 'down', title: 'D · Bas', bases: ['D', 'd'] },
 ];
 export function FreeExplorer({ active }: { active: boolean }) {
-  const player = useInteractive(),
-    state = useSyncExternalStore(player.subscribe, player.getSnapshot),
-    env = useEnvironment();
-  const [setup, setSetup] = useState(''),
-    [error, setError] = useState('');
+  const player = useInteractive();
+  const state = useSyncExternalStore(player.subscribe, player.getSnapshot);
+  const env = useEnvironment();
+  const [setup, setSetup] = useState('');
+  const [error, setError] = useState('');
   useKeyboard(active, player.enqueue);
   return (
     <>
@@ -274,7 +281,7 @@ export function FreeExplorer({ active }: { active: boolean }) {
           <InteractiveDrawing player={player} />
         </div>
         <div className="free-panel">
-          <div className="explorer-history formula" role="group" aria-label="Historique des coups">
+          <fieldset className="explorer-history formula" aria-label="Historique des coups">
             {state.history.length ? (
               <Formula
                 history
@@ -285,7 +292,7 @@ export function FreeExplorer({ active }: { active: boolean }) {
             ) : (
               <span className="empty-history">Jouez un mouvement pour commencer.</span>
             )}
-          </div>
+          </fieldset>
           <ExplorerStatus player={player} />
           <form
             className="setup-form"
@@ -294,8 +301,8 @@ export function FreeExplorer({ active }: { active: boolean }) {
               try {
                 player.applySetup(setup);
                 setError('');
-              } catch (error) {
-                setError((error as Error).message);
+              } catch (setupError) {
+                setError((setupError as Error).message);
               }
             }}
           >

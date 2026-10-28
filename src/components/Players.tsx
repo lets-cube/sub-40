@@ -1,27 +1,29 @@
 import { useEffect, useState, useSyncExternalStore, type CSSProperties } from 'react';
+
 import { invertAlg, moveDescription, parseAlg, sourceNotation } from '../cube/engine';
 import { LessonPlayback } from '../cube/playback';
 import type { AlgorithmCase, Pattern } from '../data/method';
+import { useEnvironment } from '../state/environment';
 import { CubeView } from './CubeView';
 import { Formula } from './Formula';
 import { Icon } from './Icons';
-import { useEnvironment } from './Environment';
 
 function useLessonPlayer(data: ConstructorParameters<typeof LessonPlayback>[0]) {
   const [player] = useState(() => new LessonPlayback(data));
   const environment = useEnvironment();
+  const { register } = environment;
   useEffect(() => {
-    const unregister = environment.register(player);
+    const unregister = register(player);
     return () => {
       unregister();
       player.dispose();
     };
-  }, [player]);
+  }, [player, register]);
   return { player, state: useSyncExternalStore(player.subscribe, player.getSnapshot), environment };
 }
 function PlaybackButtons({ player }: { player: LessonPlayback }) {
-  const state = useSyncExternalStore(player.subscribe, player.getSnapshot),
-    env = useEnvironment();
+  const state = useSyncExternalStore(player.subscribe, player.getSnapshot);
+  const env = useEnvironment();
   const button = (
     title: string,
     icon: 'play' | 'pause' | 'previous' | 'next' | 'reset',
@@ -75,10 +77,12 @@ export function AlgorithmCard({ data, visible }: { data: AlgorithmCase; visible:
   const { player, state, environment: env } = useLessonPlayer(data);
   const current = player.moves[state.position];
   useEffect(() => {
-    if (!visible) player.pause();
+    if (!visible) {
+      player.pause();
+    }
   }, [visible, player]);
-  const original = sourceNotation(data.alg),
-    compact = player.moves.join(' ').replaceAll("'", '′');
+  const original = sourceNotation(data.alg);
+  const compact = player.moves.join(' ').replaceAll("'", '′');
   return (
     <article className="case-card" data-case={data.id}>
       <header className="case-header">

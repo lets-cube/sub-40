@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
+
 import { describe, expect, it } from 'vitest';
-import reference from './francocube-reference.json';
-import { CASES, LESSONS, objectiveTiles } from '../src/data/method';
+
 import {
   initialState,
   invertAlg,
@@ -12,12 +12,14 @@ import {
   turn,
   type Cube,
 } from '../src/cube/engine';
+import { CASES, LESSONS, objectiveTiles } from '../src/data/method';
+import reference from './francocube-reference.json';
 export const digest = (cube: Cube) =>
   createHash('sha256')
     .update(
       cube
         .map((s) => [...s.p, ...s.n, s.c].map((n) => n || 0).join(','))
-        .sort()
+        .toSorted()
         .join(';'),
     )
     .digest('hex');
@@ -30,11 +32,13 @@ describe('Francocube migration reference', () => {
       const expected = reference.cases[index];
       expect(data.alg).toBe(expected.alg);
       expect(data.faces).toEqual(expected.faces);
-      const cube = initialState(data),
-        tokens = parseAlg(data.alg);
+      const cube = initialState(data);
+      const tokens = parseAlg(data.alg);
       expected.frames.forEach((hash, step) => {
         expect(digest(cube), `case ${index + 1}, movement ${step}`).toBe(hash);
-        if (step < tokens.length) turn(cube, tokens[step]);
+        if (step < tokens.length) {
+          turn(cube, tokens[step]);
+        }
         frames++;
       });
       const compact = initialState(data);

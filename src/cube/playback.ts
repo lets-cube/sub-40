@@ -84,17 +84,23 @@ abstract class Playback {
   };
   protected emit() {
     this.snapshot = this.read();
-    for (const listener of this.listeners) listener();
+    for (const listener of this.listeners) {
+      listener();
+    }
   }
   protected cancel() {
-    if (this.frameId !== null) this.clock.cancelFrame(this.frameId);
-    if (this.delayId !== null) this.clock.cancelDelay(this.delayId);
+    if (this.frameId !== null) {
+      this.clock.cancelFrame(this.frameId);
+    }
+    if (this.delayId !== null) {
+      this.clock.cancelDelay(this.delayId);
+    }
     this.frameId = this.delayId = null;
     this.animation = null;
   }
   protected animate(move: string, inverse: boolean, duration: number, done: () => void) {
-    const started = this.clock.now(),
-      total = this.clock.reducedMotion() ? 1 : duration;
+    const started = this.clock.now();
+    const total = this.clock.reducedMotion() ? 1 : duration;
     this.animation = { move, inverse, progress: 0 };
     this.emit();
     const tick = (time: number) => {
@@ -170,7 +176,9 @@ export class LessonPlayback extends Playback {
           this.delayId = null;
           this.step(false);
         }, 450);
-      } else this.running = false;
+      } else {
+        this.running = false;
+      }
       this.emit();
     });
   }
@@ -179,7 +187,9 @@ export class LessonPlayback extends Playback {
       this.pause();
       return;
     }
-    if (this.position === this.moves.length) this.reset();
+    if (this.position === this.moves.length) {
+      this.reset();
+    }
     this.cancel();
     this.running = true;
     this.emit();
@@ -213,8 +223,9 @@ export class InteractivePlayback extends Playback {
       this.emit();
       return;
     }
-    if (!command.undo && this.cursor < this.history.length)
+    if (!command.undo && this.cursor < this.history.length) {
       this.history = this.history.slice(0, this.cursor);
+    }
     this.animate(
       command.move,
       Boolean(command.undo),
@@ -251,12 +262,16 @@ export class InteractivePlayback extends Playback {
     this.emit();
   };
   undo = () => {
-    if (this.animation || !this.cursor) return;
+    if (this.animation || !this.cursor) {
+      return;
+    }
     this.queue.push({ move: this.history[this.cursor - 1], undo: true });
     this.drain();
   };
   clearHistory = () => {
-    if (this.animation) return;
+    if (this.animation) {
+      return;
+    }
     this.base = cloneCube(this.cube);
     this.baseMove = this.lastMove;
     this.history = [];

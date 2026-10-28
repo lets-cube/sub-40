@@ -358,7 +358,7 @@ h2 {
   margin: 0 0 12px;
 }
 .goal:before {
-  content: "↳";
+  content: '↳';
   margin-right: 7px;
 }
 .cases-grid {
@@ -685,7 +685,7 @@ dialog h2 {
   border: 1px solid var(--line);
   border-radius: 4px;
 }
-.segmented button[aria-pressed="true"] {
+.segmented button[aria-pressed='true'] {
   border-color: var(--green);
   color: var(--green);
   background: var(--soft);
@@ -1539,7 +1539,7 @@ noscript p {
   width: 20px;
   height: 20px;
 }
-.arrow-toggle[aria-pressed="true"] {
+.arrow-toggle[aria-pressed='true'] {
   background: var(--soft);
   border-color: var(--green);
   color: var(--green);
@@ -1733,15 +1733,15 @@ noscript p {
   padding: 6px 9px;
   font-size: 10px;
 }
-.notation-family[data-family="rotations"] {
+.notation-family[data-family='rotations'] {
   grid-template-columns: 1fr;
 }
-.notation-family[data-family="rotations"] .notation-card {
+.notation-family[data-family='rotations'] .notation-card {
   max-width: 460px;
   width: 100%;
   margin: auto;
 }
-.notation-family[data-family="rotations"] .cube-mount > .cube-view {
+.notation-family[data-family='rotations'] .cube-mount > .cube-view {
   width: 220px;
   flex-basis: 220px;
 }
@@ -1787,7 +1787,7 @@ kbd {
 .free-stage {
   display: grid;
   grid-template-columns: minmax(120px, 1fr) minmax(260px, 380px) minmax(120px, 1fr);
-  grid-template-areas: ". up back" "left cube right" "front down .";
+  grid-template-areas: '. up back' 'left cube right' 'front down .';
   gap: 8px 12px;
   align-items: center;
   max-width: 900px;
@@ -1915,7 +1915,7 @@ kbd {
 #setup-feedback.invalid {
   color: #a52a1e;
 }
-.setup-input-row input[aria-invalid="true"] {
+.setup-input-row input[aria-invalid='true'] {
   border-color: #a52a1e;
 }
 .sidebar-actions [data-free-view] svg,
@@ -1941,7 +1941,7 @@ kbd {
     width: 195px;
     flex-basis: 195px;
   }
-  .notation-family[data-family="rotations"] .notation-card {
+  .notation-family[data-family='rotations'] .notation-card {
     max-width: none;
   }
   .notation-bottom {
@@ -1949,7 +1949,7 @@ kbd {
   }
   .free-stage {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-areas: "left up right" "cube cube cube" "front down back";
+    grid-template-areas: 'left up right' 'cube cube cube' 'front down back';
     gap: 12px 4px;
   }
   .free-stage > .cube-mount {
@@ -2088,7 +2088,7 @@ kbd {
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) 254px;
-  grid-template-areas: "stage history" "stage setup" "status status";
+  grid-template-areas: 'stage history' 'stage setup' 'status status';
   gap: 8px 16px;
   min-width: 0;
   align-items: start;
@@ -2100,7 +2100,7 @@ kbd {
   margin: 0;
   max-width: none;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-areas: "rotations up back slices" "left cube cube right" ". front down .";
+  grid-template-areas: 'rotations up back slices' 'left cube cube right' '. front down .';
   gap: 8px;
   align-items: center;
 }
@@ -2234,7 +2234,7 @@ kbd {
   #free-cube {
     grid-row: 3;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "stage" "status" "history" "setup";
+    grid-template-areas: 'stage' 'status' 'history' 'setup';
     gap: 6px;
   }
   #free-view .free-stage {
@@ -2346,7 +2346,7 @@ kbd {
 }
 #free-cube {
   grid-template-columns: minmax(0, 1fr) 280px;
-  grid-template-areas: "stage panel";
+  grid-template-areas: 'stage panel';
   gap: 12px;
 }
 #free-view .free-stage {
@@ -2434,7 +2434,7 @@ kbd {
 @media (max-width: 820px) {
   #free-cube {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "stage" "panel";
+    grid-template-areas: 'stage' 'panel';
     gap: 6px;
   }
   #free-view .free-stage {

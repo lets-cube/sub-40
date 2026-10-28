@@ -31,9 +31,24 @@
   color: #a92b20;
   font: 400 12px / 1.4 var(--sans);
 }
-.setup-input-row input[aria-invalid="true"] {
+.setup-input-row input[aria-invalid='true'] {
   border-color: #a92b20 !important;
 }
 .formula .pattern-chunk .move.pattern-hit.played {
   color: var(--motif-color);
+}
+
+/* Native accessible groups and diagrams keep the established geometry. */
+.objective-diagram {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+fieldset.segmented {
+  min-inline-size: 0;
+  padding: 0;
+}
+fieldset.explorer-history {
+  min-inline-size: 0;
+  margin-inline: 0;
 }
