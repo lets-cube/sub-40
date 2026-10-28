@@ -1,6 +1,5 @@
+import { COLORS, FACES } from './constants';
 import {
-  COLORS,
-  FACES,
   moveSpec,
   rotation,
   moveDescription,

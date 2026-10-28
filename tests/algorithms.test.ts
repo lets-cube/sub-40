@@ -12,7 +12,8 @@ import {
   turn,
   type Cube,
 } from '../src/cube/engine';
-import { CASES, LESSONS, objectiveTiles } from '../src/data/method';
+import { CASES, LESSONS } from '../src/data/method';
+import { objectiveTiles } from '../src/features/method/objectives';
 import reference from './francocube-reference.json';
 export const digest = (cube: Cube) =>
   createHash('sha256')

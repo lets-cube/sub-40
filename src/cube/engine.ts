@@ -1,55 +1,18 @@
-/** Fixed sticker coordinates. Cameras never change the meaning of R/L, U/D or F/B. */
-export type Camera = 'front' | 'back';
-export type FaceName = 'Up' | 'Down' | 'Front' | 'Back' | 'Right' | 'Left';
-export type FaceMap = Record<FaceName, (number | string)[]>;
-export interface Sticker {
-  p: number[];
-  n: number[];
-  c: number;
-}
-export type Cube = Sticker[];
-export interface Animation {
-  move: string;
-  inverse: boolean;
-  progress: number;
-}
-export const COLORS = [
-  'var(--cube-u)',
-  'var(--cube-l)',
-  'var(--cube-f)',
-  'var(--cube-r)',
-  'var(--cube-b)',
-  'var(--cube-d)',
-  'var(--cube-mask)',
-];
-export const FACES: Record<FaceName, { n: number[]; p: (r: number, c: number) => number[] }> = {
-  Up: { n: [0, 1, 0], p: (r, c) => [c - 1, 1, r - 1] },
-  Down: { n: [0, -1, 0], p: (r, c) => [c - 1, -1, 1 - r] },
-  Front: { n: [0, 0, 1], p: (r, c) => [c - 1, 1 - r, 1] },
-  Back: { n: [0, 0, -1], p: (r, c) => [1 - c, 1 - r, -1] },
-  Right: { n: [1, 0, 0], p: (r, c) => [1, 1 - r, 1 - c] },
-  Left: { n: [-1, 0, 0], p: (r, c) => [-1, 1 - r, c - 1] },
-};
-const MOVE_NAMES: Record<string, string> = {
-  R: 'face droite',
-  L: 'face gauche',
-  U: 'face du haut',
-  D: 'face du bas',
-  F: 'face avant',
-  B: 'face arrière',
-  r: 'deux couches de droite',
-  l: 'deux couches de gauche',
-  u: 'deux couches du haut',
-  d: 'deux couches du bas',
-  f: 'deux couches avant',
-  b: 'deux couches arrière',
-  M: 'tranche centrale verticale',
-  E: 'tranche centrale horizontale',
-  S: 'tranche centrale parallèle à F',
-  x: 'cube entier, axe R',
-  y: 'cube entier, axe U',
-  z: 'cube entier, axe F',
-};
+import {
+  FACES,
+  FACE_AXES,
+  FACE_DIRECTIONS,
+  SLICE_AXES,
+  SLICE_DIRECTIONS,
+  SOLVED_FACE_COLORS,
+  ROTATION_MOVE_BASES,
+  SLICE_MOVE_BASES,
+} from './constants';
+import { MOVE_NAMES } from './notation.constants';
+import type { Camera, Cube, FaceMap, FaceName } from './types';
+
+export type { Animation, Camera, Cube, FaceMap, FaceName, Sticker } from './types';
+
 export function makeCube(faces: FaceMap): Cube {
   return (Object.entries(FACES) as [FaceName, typeof FACES.Up][]).flatMap(([name, f]) =>
     Array.from({ length: 9 }, (_, i) => ({
@@ -106,20 +69,18 @@ export function moveSpec(move: string, inverse = false) {
   let axis: number;
   let dir: number;
   let layers: number[];
-  const axes: Record<string, number> = { R: 0, L: 0, U: 1, D: 1, F: 2, B: 2 };
-  const dirs: Record<string, number> = { R: -1, L: 1, U: -1, D: 1, F: -1, B: 1 };
-  if ('xyz'.includes(f)) {
-    axis = 'xyz'.indexOf(f);
+  if (ROTATION_MOVE_BASES.includes(f)) {
+    axis = ROTATION_MOVE_BASES.indexOf(f);
     dir = -1;
     layers = [-1, 0, 1];
-  } else if ('MES'.includes(f)) {
-    axis = ({ M: 0, E: 1, S: 2 } as Record<string, number>)[f];
-    dir = ({ M: 1, E: 1, S: -1 } as Record<string, number>)[f];
+  } else if (SLICE_MOVE_BASES.includes(f)) {
+    axis = SLICE_AXES[f];
+    dir = SLICE_DIRECTIONS[f];
     layers = [0];
   } else {
     const face = f.toUpperCase();
-    axis = axes[face];
-    dir = dirs[face];
+    axis = FACE_AXES[face];
+    dir = FACE_DIRECTIONS[face];
     const layer = 'RUF'.includes(face) ? 1 : -1;
     layers = f === face ? [layer] : [layer, 0];
   }
@@ -159,10 +120,9 @@ export function initialState(c: { faces: FaceMap; alg: string }): Cube {
   return state;
 }
 export function solvedCube(): Cube {
-  const map: Record<FaceName, number> = { Up: 0, Left: 1, Front: 2, Right: 3, Back: 4, Down: 5 };
   return makeCube(
     Object.fromEntries(
-      Object.keys(FACES).map((f) => [f, Array(9).fill(map[f as FaceName])]),
+      Object.keys(FACES).map((f) => [f, Array(9).fill(SOLVED_FACE_COLORS[f as FaceName])]),
     ) as FaceMap,
   );
 }

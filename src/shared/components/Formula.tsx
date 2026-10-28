@@ -1,7 +1,8 @@
 import type { CSSProperties } from 'react';
 
-import { findPatternGroups } from '../cube/patterns';
-import { faceStyle } from './move-style';
+import { findPatternGroups } from '../../cube/patterns';
+import { PATTERNS } from '../../data/method';
+import { faceStyle } from '../utils/move-style';
 export function Formula({
   moves,
   position,
@@ -13,7 +14,7 @@ export function Formula({
   onSelect?: (index: number) => void;
   history?: boolean;
 }) {
-  const groups = findPatternGroups(moves);
+  const groups = findPatternGroups(moves, PATTERNS);
   function token(i: number, pattern = false) {
     const move = moves[i];
     const current = position !== undefined && i === (history ? position - 1 : position);

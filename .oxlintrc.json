@@ -30,5 +30,62 @@
       }
     ]
   },
-  "ignorePatterns": ["node_modules/**", "dist/**", "coverage/**"]
+  "ignorePatterns": ["node_modules/**", "dist/**", "coverage/**"],
+  "overrides": [
+    {
+      "files": ["src/cube/**/*.ts"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": [
+                  "react",
+                  "react/*",
+                  "**/app/**",
+                  "**/features/**",
+                  "**/shared/**",
+                  "**/data/**"
+                ],
+                "message": "Le moteur du cube reste indépendant de React, de l’interface et du contenu pédagogique."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/shared/**/*.{ts,tsx}"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["**/app/**", "**/features/**"],
+                "message": "Le socle partagé ne dépend pas des écrans ou de la composition de l’application."
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["src/features/**/*.{ts,tsx}"],
+      "rules": {
+        "eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["**/app/**"],
+                "message": "Les fonctionnalités ne dépendent pas de la couche qui les assemble."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }

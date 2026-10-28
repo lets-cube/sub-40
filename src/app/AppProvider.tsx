@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 
 import type { LessonPlayback } from '../cube/playback';
-import { EnvironmentContext, type Environment, type ModalName } from '../state/environment';
+import { AppUiContext, type AppUiContextValue, type ModalName } from '../shared/state/ui-context';
+import { TOAST_DURATION_MS } from './app.constants';
 
-export function EnvironmentProvider({ children }: { children: ReactNode }) {
+export function AppProvider({ children }: { children: ReactNode }) {
   const [arrows, setArrows] = useState(false);
   const [modal, setModal] = useState<ModalName | null>(null);
   const [toast, setToast] = useState('');
@@ -62,10 +63,10 @@ export function EnvironmentProvider({ children }: { children: ReactNode }) {
     if (timer.current) {
       clearTimeout(timer.current);
     }
-    timer.current = window.setTimeout(() => setToast(''), 2400);
+    timer.current = window.setTimeout(() => setToast(''), TOAST_DURATION_MS);
   }, []);
 
-  const value = useMemo<Environment>(
+  const value = useMemo<AppUiContextValue>(
     () => ({
       arrows,
       toggleArrows,
@@ -79,9 +80,9 @@ export function EnvironmentProvider({ children }: { children: ReactNode }) {
   );
 
   return (
-    <EnvironmentContext value={value}>
+    <AppUiContext value={value}>
       {children}
       <output className={`toast${toast ? ' visible' : ''}`}>{toast}</output>
-    </EnvironmentContext>
+    </AppUiContext>
   );
 }

@@ -1,12 +1,14 @@
-import { PATTERNS, type Pattern } from '../data/method';
 import { parseAlg } from './engine';
-export interface PatternGroup {
+export interface PatternGroup<TPattern> {
   start: number;
   end: number;
-  patterns: Pattern[];
+  patterns: TPattern[];
 }
-export function findPatternGroups(moves: string[], patterns: Pattern[] = PATTERNS) {
-  const hits: PatternGroup[] = [];
+export function findPatternGroups<TPattern extends { id: string; alg: string }>(
+  moves: string[],
+  patterns: readonly TPattern[],
+) {
+  const hits: PatternGroup<TPattern>[] = [];
   for (const pattern of patterns) {
     const sequence = parseAlg(pattern.alg);
     for (let start = 0; start + sequence.length <= moves.length; start++) {
@@ -16,7 +18,7 @@ export function findPatternGroups(moves: string[], patterns: Pattern[] = PATTERN
     }
   }
   hits.sort((a, b) => a.start - b.start || b.end - a.end);
-  const groups: PatternGroup[] = [];
+  const groups: PatternGroup<TPattern>[] = [];
   for (const hit of hits) {
     const previous = groups.at(-1);
     if (previous && hit.start < previous.end) {

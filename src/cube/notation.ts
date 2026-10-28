@@ -1,23 +1,8 @@
-const FULL_MOVE_NAMES: Record<string, string> = {
-  R: 'Right (droite)',
-  L: 'Left (gauche)',
-  U: 'Up (haut)',
-  D: 'Down (bas)',
-  F: 'Front (avant)',
-  B: 'Back (arrière)',
-  r: 'Right wide (deux couches de droite)',
-  l: 'Left wide (deux couches de gauche)',
-  u: 'Up wide (deux couches du haut)',
-  d: 'Down wide (deux couches du bas)',
-  f: 'Front wide (deux couches avant)',
-  b: 'Back wide (deux couches arrière)',
-  M: 'Middle (tranche centrale verticale)',
-  E: 'Equator (tranche centrale horizontale)',
-  S: 'Standing (tranche parallèle à la face avant)',
-  x: 'Rotation x (axe droite–gauche)',
-  y: 'Rotation y (axe haut–bas)',
-  z: 'Rotation z (axe avant–arrière)',
-};
+import { FACE_MOVE_BASES, SLICE_MOVE_BASES, ROTATION_MOVE_BASES } from './constants';
+import { FULL_MOVE_NAMES, SETUP_LIMITS } from './notation.constants';
+
+const KEYBOARD_MOVE_BASES = FACE_MOVE_BASES + SLICE_MOVE_BASES + ROTATION_MOVE_BASES.toUpperCase();
+
 export function fullMoveName(move?: string | null) {
   if (!move) {
     return 'Cube résolu';
@@ -34,7 +19,7 @@ export function parseSetupAlg(text: string) {
     }
   }
   function sequence(depth = 0): string[] {
-    if (depth > 8) {
+    if (depth > SETUP_LIMITS.maxDepth) {
       throw new Error('Trop de parenthèses imbriquées.');
     }
     const moves: string[] = [];
@@ -56,7 +41,12 @@ export function parseSetupAlg(text: string) {
         if (repeat) {
           index += repeat[0].length;
         }
-        if (!group.length || count < 1 || count > 99 || moves.length + group.length * count > 500) {
+        if (
+          !group.length ||
+          count < 1 ||
+          count > SETUP_LIMITS.maxRepeat ||
+          moves.length + group.length * count > SETUP_LIMITS.maxMoves
+        ) {
           throw new Error('La formule doit contenir de 1 à 500 mouvements.');
         }
         for (let i = 0; i < count; i++) {
@@ -77,7 +67,7 @@ export function parseSetupAlg(text: string) {
           move = move[0] + '2';
         }
         moves.push(move);
-        if (moves.length > 500) {
+        if (moves.length > SETUP_LIMITS.maxMoves) {
           throw new Error('La formule est limitée à 500 mouvements.');
         }
       }
@@ -101,12 +91,12 @@ export function keyboardCommand(
   const plain = e.key.toUpperCase();
   const physical = /^Key([A-Z])$/.exec(e.code || '')?.[1];
   const letter = e.altKey && physical ? physical : plain;
-  if (letter.length !== 1 || !'RLUDFBMESXYZ'.includes(letter)) {
+  if (letter.length !== 1 || !KEYBOARD_MOVE_BASES.includes(letter)) {
     return null;
   }
-  const base = 'XYZ'.includes(letter)
+  const base = ROTATION_MOVE_BASES.toUpperCase().includes(letter)
     ? letter.toLowerCase()
-    : (e.altKey || wide) && 'RLUDFB'.includes(letter)
+    : (e.altKey || wide) && FACE_MOVE_BASES.includes(letter)
       ? letter.toLowerCase()
       : letter;
   return base + (e.shiftKey ? "'" : '');

@@ -1,0 +1,43 @@
+export const MOVE_NAMES: Record<string, string> = {
+  R: 'face droite',
+  L: 'face gauche',
+  U: 'face du haut',
+  D: 'face du bas',
+  F: 'face avant',
+  B: 'face arrière',
+  r: 'deux couches de droite',
+  l: 'deux couches de gauche',
+  u: 'deux couches du haut',
+  d: 'deux couches du bas',
+  f: 'deux couches avant',
+  b: 'deux couches arrière',
+  M: 'tranche centrale verticale',
+  E: 'tranche centrale horizontale',
+  S: 'tranche centrale parallèle à F',
+  x: 'cube entier, axe R',
+  y: 'cube entier, axe U',
+  z: 'cube entier, axe F',
+};
+
+export const FULL_MOVE_NAMES: Record<string, string> = {
+  R: 'Right (droite)',
+  L: 'Left (gauche)',
+  U: 'Up (haut)',
+  D: 'Down (bas)',
+  F: 'Front (avant)',
+  B: 'Back (arrière)',
+  r: 'Right wide (deux couches de droite)',
+  l: 'Left wide (deux couches de gauche)',
+  u: 'Up wide (deux couches du haut)',
+  d: 'Down wide (deux couches du bas)',
+  f: 'Front wide (deux couches avant)',
+  b: 'Back wide (deux couches arrière)',
+  M: 'Middle (tranche centrale verticale)',
+  E: 'Equator (tranche centrale horizontale)',
+  S: 'Standing (tranche parallèle à la face avant)',
+  x: 'Rotation x (axe droite–gauche)',
+  y: 'Rotation y (axe haut–bas)',
+  z: 'Rotation z (axe avant–arrière)',
+};
+
+export const SETUP_LIMITS = { maxDepth: 8, maxRepeat: 99, maxMoves: 500 } as const;

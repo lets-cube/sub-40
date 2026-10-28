@@ -1,5 +1,5 @@
-import { type Animation, type Camera, type Cube } from '../cube/engine';
-import { svgCube } from '../cube/render';
+import { type Animation, type Camera, type Cube } from '../../cube/engine';
+import { svgCube } from '../../cube/render';
 
 /** A drawing-only SVG island: UI, controls and state are all managed by React. */
 export function CubeView({

@@ -94,7 +94,7 @@ Les corrections de textes, les retours d’apprentissage, les améliorations d�
 
 - **Un bug ?** [Ouvrir une issue](https://github.com/lets-cube/sub-40/issues) avec la formule jouée, le résultat attendu et, si possible, une capture.
 - **Une amélioration ?** Proposer une pull request avec une explication du changement et ses vérifications.
-- **Une première contribution ?** Les textes sont dans `src/data/`, l’interface dans `src/components/`, le moteur dans `src/cube/` et le style dans `src/styles/`.
+- **Une première contribution ?** Les textes sont dans `src/data/`, les écrans dans `src/features/`, les composants partagés dans `src/shared/`, le moteur dans `src/cube/` et le style dans `src/styles/`.
 
 Avant de proposer une modification :
 
@@ -105,7 +105,7 @@ bun run build
 
 Les tests vérifient notamment 310 positions de référence Francocube, les directions des flèches, les mouvements en file et la reprise de l’historique.
 
-Le [guide de contribution](CONTRIBUTING.md) précise comment démarrer, décrire un problème et vérifier les changements.
+Le [guide de contribution](CONTRIBUTING.md) précise comment démarrer, décrire un problème et vérifier les changements. Le [guide d’architecture](docs/ARCHITECTURE.md) décrit le découpage du client et les responsabilités de chaque dossier.
 
 ## Crédits et licences
 

@@ -8,6 +8,7 @@ import {
   type FaceMap,
 } from './engine';
 import { parseSetupAlg } from './notation';
+import { PLAYBACK_TIMING } from './playback.constants';
 
 export const cloneCube = (cube: Cube): Cube =>
   cube.map((s) => ({ ...s, p: [...s.p], n: [...s.n] }));
@@ -100,7 +101,7 @@ abstract class Playback {
   }
   protected animate(move: string, inverse: boolean, duration: number, done: () => void) {
     const started = this.clock.now();
-    const total = this.clock.reducedMotion() ? 1 : duration;
+    const total = this.clock.reducedMotion() ? PLAYBACK_TIMING.reducedMotion : duration;
     this.animation = { move, inverse, progress: 0 };
     this.emit();
     const tick = (time: number) => {
@@ -169,18 +170,23 @@ export class LessonPlayback extends Playback {
       return;
     }
     const move = this.moves[this.position - (inverse ? 1 : 0)];
-    this.animate(move, inverse, move.includes('2') ? 650 : 430, () => {
-      this.position += inverse ? -1 : 1;
-      if (this.running && this.position < this.moves.length) {
-        this.delayId = this.clock.delay(() => {
-          this.delayId = null;
-          this.step(false);
-        }, 450);
-      } else {
-        this.running = false;
-      }
-      this.emit();
-    });
+    this.animate(
+      move,
+      inverse,
+      move.includes('2') ? PLAYBACK_TIMING.lessonHalfTurn : PLAYBACK_TIMING.lessonQuarterTurn,
+      () => {
+        this.position += inverse ? -1 : 1;
+        if (this.running && this.position < this.moves.length) {
+          this.delayId = this.clock.delay(() => {
+            this.delayId = null;
+            this.step(false);
+          }, PLAYBACK_TIMING.lessonPause);
+        } else {
+          this.running = false;
+        }
+        this.emit();
+      },
+    );
   }
   toggle = () => {
     if (this.running) {
@@ -229,7 +235,9 @@ export class InteractivePlayback extends Playback {
     this.animate(
       command.move,
       Boolean(command.undo),
-      command.move.includes('2') ? 440 : 260,
+      command.move.includes('2')
+        ? PLAYBACK_TIMING.interactiveHalfTurn
+        : PLAYBACK_TIMING.interactiveQuarterTurn,
       () => {
         if (command.undo) {
           this.history = this.history.slice(0, this.cursor - 1);

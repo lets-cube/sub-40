@@ -43,13 +43,16 @@ Pour un problème de compréhension, indiquer le passage qui pose difficulté et
 | Étapes et objectifs                            | `src/data/lessons.json`      |
 | Algorithmes, masques et reconnaissance des cas | `src/data/cases.json`        |
 | Motifs et couleurs associées                   | `src/data/patterns.json`     |
-| Page, navigation et fenêtres                   | `src/App.tsx`                |
-| Lecteurs et cubes interactifs                  | `src/components/`            |
-| État partagé de l’interface                    | `src/state/`                 |
+| Composition de l’application et navigation     | `src/app/`                   |
+| Méthode, notation, vue libre et motifs         | `src/features/`              |
+| Composants et hooks réutilisés                 | `src/shared/`                |
+| Contrat de l’état partagé de l’interface       | `src/shared/state/`          |
 | Rotations, SVG, notation et historique         | `src/cube/`                  |
 | Typographie, couleurs et mise en page          | `src/styles/`                |
 | Tests et positions de référence                | `tests/`                     |
 | Captures et animation du README                | `docs/assets/`               |
+
+Le [guide d’architecture](docs/ARCHITECTURE.md) décrit les responsabilités et les règles d’import. Placer les constantes dans leur fonctionnalité ou leur domaine ; réserver `shared/` aux éléments réutilisés.
 
 ## Vérifier selon le changement
 
