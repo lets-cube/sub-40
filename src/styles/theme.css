@@ -161,6 +161,10 @@ button:hover {
   padding-block: clamp(48px, 6vw, 88px);
   border-bottom: 0;
 }
+.hero-heading {
+  width: fit-content;
+  max-width: 100%;
+}
 .hero h1 {
   font: 800 clamp(64px, 9.1vw, 128px) / 0.86 var(--sans);
   font-stretch: 72%;
@@ -169,13 +173,19 @@ button:hover {
   margin: 0;
   overflow-wrap: normal;
 }
+.hero .hero-description,
 .hero-copy p {
   font: 400 20px / 1.5 var(--serif);
   color: var(--text-2);
   max-width: 43ch;
   margin: 0;
 }
-.hero-copy a {
+.hero .hero-description {
+  contain: inline-size;
+  max-width: none;
+  margin-top: 24px;
+}
+.hero a {
   text-underline-offset: 3px;
 }
 .hero-actions {
@@ -1063,6 +1073,7 @@ kbd {
   .hero h1 {
     font-size: clamp(64px, 9vw, 104px);
   }
+  .hero .hero-description,
   .hero-copy p {
     font-size: 18px;
   }
@@ -1366,6 +1377,7 @@ kbd {
   .hero h1 {
     font-size: 64px;
   }
+  .hero .hero-description,
   .hero-copy p {
     font-size: 18px;
   }
@@ -1845,7 +1857,11 @@ kbd {
 .hero-copy .method-explanation {
   font-size: 17px;
   line-height: 1.55;
+  max-width: none;
   margin-top: 18px;
+}
+.hero-copy .method-explanation:first-child {
+  margin-top: 0;
 }
 .index-heading .outline {
   margin-left: auto;

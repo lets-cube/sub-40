@@ -5,16 +5,16 @@ import type { Cube3x3Method } from '../../content/types';
 export function MethodIntro({ method }: { method: Cube3x3Method }) {
   return (
     <section className="hero" aria-labelledby="page-title">
-      <h1 id="page-title">
-        {method.title.map((line, i) => (
-          <Fragment key={line}>
-            {i > 0 && <br />}
-            {line}
-          </Fragment>
-        ))}
-      </h1>
-      <div className="hero-copy">
-        <p>
+      <div className="hero-heading">
+        <h1 id="page-title">
+          {method.title.map((line, i) => (
+            <Fragment key={line}>
+              {i > 0 && <br />}
+              {line}
+            </Fragment>
+          ))}
+        </h1>
+        <p className="hero-description">
           {method.sources.length > 0 && (
             <>
               Inspiré de{' '}
@@ -29,6 +29,8 @@ export function MethodIntro({ method }: { method: Cube3x3Method }) {
           )}
           {method.description}
         </p>
+      </div>
+      <div className="hero-copy">
         {method.introduction.map((p, i) => (
           <p className="method-explanation" key={i}>
             {p}
