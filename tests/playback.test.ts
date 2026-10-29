@@ -14,6 +14,7 @@ import { parseSetupAlg } from '../src/domain/puzzles/cube-3x3/notation';
 import { keyboardCommand } from '../src/features/play-algorithm/browser/keyboard';
 import type { Clock } from '../src/features/play-algorithm/model/clock';
 import { InteractivePlayback, LessonPlayback } from '../src/features/play-algorithm/model/playback';
+import { PLAYBACK_TIMING } from '../src/features/play-algorithm/model/playback.constants';
 const { cases: CASES } = INTERMEDIATE_METHOD;
 const digest = (cube: Cube) =>
   createHash('sha256')
@@ -140,6 +141,43 @@ describe('persistent interactive cube', () => {
   });
 });
 describe('lesson playback', () => {
+  it.each([
+    { move: 'R', duration: PLAYBACK_TIMING.lessonQuarterTurn, inverse: false },
+    { move: 'R2', duration: PLAYBACK_TIMING.lessonHalfTurn, inverse: false },
+    { move: 'R', duration: PLAYBACK_TIMING.lessonQuarterTurn, inverse: true },
+    { move: 'R2', duration: PLAYBACK_TIMING.lessonHalfTurn, inverse: true },
+  ])(
+    'finishes $move (inverse: $inverse) despite repeated navigation clicks',
+    ({ move, duration, inverse }) => {
+      const clock = new TestClock();
+      const p = new LessonPlayback({ alg: `U ${move} F`, startSolved: true }, clock);
+      p.seek(inverse ? 2 : 1);
+      const step = inverse ? p.previous : p.next;
+      step();
+
+      for (let i = 0; i < 3; i++) {
+        clock.advance(100);
+        const animation = p.getSnapshot().animation;
+        expect(animation?.move).toBe(move);
+        expect(animation?.progress).toBeGreaterThan(0);
+        p.next();
+        p.previous();
+        expect(p.getSnapshot().animation).toEqual(animation);
+      }
+
+      clock.advance(duration - 300);
+      expect(p.getSnapshot().animation).toBeNull();
+      expect(p.getSnapshot().position).toBe(inverse ? 1 : 2);
+      expect(digest(p.getSnapshot().cube)).toBe(expected(inverse ? ['U'] : ['U', move]));
+      clock.advance(1000);
+      expect(p.getSnapshot().position).toBe(inverse ? 1 : 2);
+
+      step();
+      clock.advance(duration);
+      expect(p.getSnapshot().position).toBe(inverse ? 0 : 3);
+      expect(digest(p.getSnapshot().cube)).toBe(expected(inverse ? [] : ['U', move, 'F']));
+    },
+  );
   it('seeks to the correct original state and supports forward/back/reset', () => {
     const clock = new TestClock();
     const p = new LessonPlayback(CASES[15], clock);

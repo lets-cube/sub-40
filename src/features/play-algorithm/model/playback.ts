@@ -141,10 +141,16 @@ export class LessonPlayback extends Playback {
     this.emit();
   };
   next = () => {
+    if (this.animation) {
+      return;
+    }
     this.pause();
     this.step(false);
   };
   previous = () => {
+    if (this.animation) {
+      return;
+    }
     this.pause();
     this.step(true);
   };
